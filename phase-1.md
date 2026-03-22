@@ -31,7 +31,17 @@
 
 ---
 
-### 3. Trap Bar RDL — 4-2-1-0 tempo
+### 3. Wall Sit Isometric Hold
+*Patellar tendon stimulus at peak stress angle (~60° knee flexion — thighs roughly parallel). Knees tracking over toes, back flat against wall. Should be uncomfortable by the end of each hold.*
+
+| Week | Sets × Duration | Rest |
+|---|---|---|
+| 1–3 | 4 × 45s | 2 min |
+| 4 (Deload) | 2 × 45s | 2 min |
+
+---
+
+### 4. Trap Bar RDL — 4-2-1-0 tempo
 *Focus on the eccentric. Feel the stretch in the hamstrings at the bottom, pause, drive up.*
 
 | Week | Sets × Reps | Load |
