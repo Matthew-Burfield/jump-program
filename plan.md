@@ -22,6 +22,7 @@
 **Goal:** Peak Expression & Testing
 
 - **Primary Stimulus:** Specificity.
-- **Lifting Intensity:** Very Low (Maintenance only).
-- **Jump Volume:** High Intensity / Low Volume (Max approach jumps).
-- **End of Week 8:** Max Vertical Test.
+- **Lifting Intensity:** Very Low (60–70% 1RM, 1 main lift per session, maintenance only).
+- **Jump Volume:** High Intensity / Low Volume — 3–5 max-effort approach jumps per session, full rest between each.
+- **Sessions:** 3 (e.g. Mon/Wed/Fri). No new stimulus. No DOMS going into the test.
+- **End of Week 8:** Max Vertical Test (Saturday).

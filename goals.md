@@ -3,7 +3,7 @@
 ### 1. Primary Physical Goals
 
 - **Vertical Jump:** Increase standing vertical by **2+ inches** by the end of Week 8.
-- **Back Squat:** Achieve a 5-rep max at **1.5x bodyweight** with perfect 4-0-1-0 tempo.
+- **Back Squat:** Achieve a 5-rep max at **1.5x bodyweight** with perfect 4-3-1-0 tempo.
 - **Relative Strength:** Maintain or slightly reduce body fat % while increasing bar speed.
 
 ### 2. Structural/Health Goals
