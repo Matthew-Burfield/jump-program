@@ -104,6 +104,19 @@
 
 ---
 
+## Sprint Sessions *(Upper Body Days — 2x/week)*
+*Acceleration-focused. Sprinting shares underlying qualities with jumping: hip extension power, ankle stiffness, reactive strength. Kept sub-maximal in Phase 1 to avoid competing with tendon recovery.*
+
+- **Volume:** 4–6 × 20–30m
+- **Intensity:** ~85% effort — fast, not maximal
+- **Rest:** Full recovery between reps (90s–2 min)
+- **Timing:** Before upper body lifting, after warm-up
+- **Note:** Do not sprint on lower body days
+
+*Sprint volume and intensity increase in Phase 2.*
+
+---
+
 ## Warm-Up Note
 Include **Copenhagen planks** in your warm-up — 3 × 20–30s each side. Non-negotiable given groin history.
 
