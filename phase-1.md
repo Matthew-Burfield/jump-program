@@ -11,10 +11,12 @@
 ## Shared: CNS Primers
 *Always first. These prime the nervous system — they are not volume work.*
 
-**2-foot Approach Jump × 2 reps**
-- 2–3 step run-up into a jump stop, 2-foot takeoff, max intent every rep
+**Standing CMJ × 2 reps — measured via My Jump Lab**
+- Max intent every rep, full reset between jumps
 - 3 min full rest between jumps
-- **If either jump feels >10% off your recent best → cut all working sets by 50% today**
+- **If either jump reads >10% below your recent best My Jump Lab score → cut all working sets by 50% today**
+
+*Approach jumps introduced in Phase 2 once the tendon base is established.*
 
 ---
 
@@ -23,10 +25,10 @@
 
 | Week | Sets × Reps | Load |
 |---|---|---|
-| 1 | 4 × 5 | 107.5kg (~65%) |
-| 2 | 4 × 5 | 115kg (~70%) |
-| 3 | 4 × 5 | 122.5kg (~75%) |
-| 4 (Deload) | 2 × 5 | 107.5kg (~65%) |
+| 1 | 4 × 5 | 100kg (~60%) — tempo learning week |
+| 2 | 4 × 5 | 107.5kg (~65%) |
+| 3 | 4 × 5 | 115kg (~70%) |
+| 4 (Deload) | 2 × 5 | 100kg (~60%) |
 
 ---
 
@@ -99,6 +101,11 @@
 | 2 | 3 × 12 |
 | 3 | 3 × 12 |
 | 4 (Deload) | 2 × 10 |
+
+---
+
+## Warm-Up Note
+Include **Copenhagen planks** in your warm-up — 3 × 20–30s each side. Non-negotiable given groin history.
 
 ---
 
