@@ -14,8 +14,16 @@ The Central Nervous System (CNS) is the driver of the vertical jump. You cannot 
 
 ### 4. Respect the Tempo
 
-In the Accumulation Phase, the 4-second eccentric (descent) and 3-second isometric (hold) are non-negotiable. These are not "suggestions"; they are the mechanical stress required to remodel your tendons.
+In Phase 0 (Tendon Armor), the 4-second eccentric (descent) and 3-second isometric (hold) are non-negotiable. These are not "suggestions"; they are the mechanical stress required to remodel your tendons.
 
 ### 5. Quality over Quantity
 
 A vertical jump is a 0.2-second explosion. Doing 50 mediocre jumps is worse than doing 5 perfect ones. If the "pop" is gone, the workout is over.
+
+### 6. Specificity Balance
+
+As lifting days get more specific, general days must get more general — and vice versa. Never run both at high specificity simultaneously; that's how injuries happen.
+
+### 7. Copenhagen Planks Every Session
+
+Non-negotiable warm-up item given groin history. Do not skip regardless of how tight the session is.
