@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump Program</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3347;
+      --accent: #4f8ef7;
+      --accent2: #f7994f;
+      --text: #e2e8f0;
+      --muted: #7c8499;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    header h1 span { color: var(--accent); }
+
+    nav {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin: 0 -16px;
+      padding: 0 16px;
+    }
+
+    nav::-webkit-scrollbar { display: none; }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.15s;
+      min-height: 44px;
+    }
+
+    nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Layout ── */
+    main { padding: 20px 16px 80px; }
+
+    .tab { display: none; }
+    .tab.active { display: block; }
+
+    /* ── Typography ── */
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-weight: 600;
+      margin: 24px 0 8px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+    }
+
+    h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+
+    p { margin-bottom: 10px; font-size: 0.88rem; color: var(--text); }
+
+    ul { padding-left: 18px; margin: 8px 0; font-size: 0.88rem; }
+    ul li { margin-bottom: 5px; }
+
+    /* ── Cards ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .meta-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .meta-card .label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .meta-card .value {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .section-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── Callouts ── */
+    .callout {
+      background: rgba(79, 142, 247, 0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .callout.warning { background: rgba(245, 158, 11, 0.08); border-color: var(--warning); }
+    .callout.danger  { background: rgba(239, 68, 68, 0.08);  border-color: var(--danger);  }
+
+    /* ── Tables (horizontal scroll on mobile) ── */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 10px -16px;
+      padding: 0 16px;
+    }
+
+    /* Inside section-block, no negative margin needed */
+    .section-block .table-wrap { margin: 10px -16px; padding: 0 16px; }
+
+    table {
+      width: 100%;
+      min-width: 340px;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    thead tr { background: var(--surface2); }
+
+    th {
+      text-align: left;
+      padding: 7px 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr.deload td { color: var(--muted); font-style: italic; }
+    tr.deload td:first-child::after { content: ' ↓'; color: var(--warning); }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-phase0 { background: rgba(247, 153, 79, 0.15); color: var(--accent2); border: 1px solid rgba(247, 153, 79, 0.3); }
+    .badge-phase1 { background: rgba(79, 142, 247, 0.15); color: var(--accent);  border: 1px solid rgba(79, 142, 247, 0.3); }
+
+    .superset-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── Principles ── */
+    .principles-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .principle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .principle-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.4;
+      min-width: 24px;
+      line-height: 1.2;
+    }
+
+    .principle-title { font-weight: 700; margin-bottom: 3px; color: #fff; font-size: 0.9rem; }
+    .principle-body  { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── Goals ── */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .goal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .goal-card .goal-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .goal-card .goal-value { font-size: 1.05rem; font-weight: 700; color: var(--accent); }
+    .goal-card .goal-desc  { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+    /* ── Desktop scaling ── */
+    @media (min-width: 640px) {
+      header { padding: 18px 24px 0; }
+      nav { margin: 0 -24px; padding: 0 24px; }
+      main { max-width: 860px; margin: 0 auto; padding: 28px 24px 80px; }
+      h2 { font-size: 1.5rem; }
+      .meta-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+      .goals-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+      .section-block { padding: 20px; }
+      .section-block .table-wrap { margin: 10px -20px; padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Jump <span>Program</span></h1>
+  <nav>
+    <button class="active" onclick="showTab('phase0', this)">Phase 0</button>
+    <button onclick="showTab('phase1', this)">Phase 1</button>
+    <button onclick="showTab('upper', this)">Upper Body</button>
+    <button onclick="showTab('goals', this)">Goals</button>
+    <button onclick="showTab('principles', this)">Principles</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- PHASE 0 -->
+  <div id="phase0" class="tab active">
+    <h2>Phase 0: Tendon Armor</h2>
+    <p class="subtitle">Weeks 1–4 &nbsp;·&nbsp; <span class="badge badge-phase0">Structural Integrity</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="label">Stimulus</div>
+        <div class="value">Eccentric &amp; Isometric</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Tempo (all lifts)</div>
+        <div class="value">4-3-1-0</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Frequency</div>
+        <div class="value">3 days / week</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Rotation</div>
+        <div class="value">A/B/A → B/A/B</div>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <strong>Tempo is non-negotiable.</strong> 4s down · 3s hold · 1s up. The 3s isometric at the bottom is where tendon remodelling happens. No shortcuts.
+    </div>
+
+    <h3>CNS Primers — Always First</h3>
+    <div class="section-block">
+      <h4>Standing CMJ × 2 reps — measured via My Jump Lab</h4>
+      <ul>
+        <li>Max intent every rep, full reset between jumps</li>
+        <li>3 min full rest between jumps</li>
+      </ul>
+      <div class="callout danger" style="margin-top:12px">
+        If either jump reads &gt;10% below recent best → <strong>cut all working sets by 50% today</strong>
+      </div>
+    </div>
+
+    <h3>Shared Work (Every Session)</h3>
+
+    <div class="section-block">
+      <h4>Back Squat — 4-3-1-0 tempo</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">The 3s hold at the bottom is where tendon remodelling happens.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4 × 5</td><td>100kg (~60%) — tempo learning week</td></tr>
+          <tr><td>2</td><td>4 × 5</td><td>107.5kg (~65%)</td></tr>
+          <tr><td>3</td><td>4 × 5</td><td>115kg (~70%)</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 5</td><td>100kg (~60%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Wall Sit Isometric Hold</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">~60° knee flexion (thighs roughly parallel). Knees tracking over toes, back flat. Should be uncomfortable by end of each hold.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Duration</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td>1–3</td><td>4 × 45s</td><td>2 min</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 45s</td><td>2 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Nordic Hamstring Curl</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Minimum band assistance needed. Aim to reduce each week.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3 × 6</td><td>Light band assist if needed</td></tr>
+          <tr><td>2</td><td>3 × 7</td><td>Reduce band or go unassisted</td></tr>
+          <tr><td>3</td><td>3 × 8</td><td>Unassisted target</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 5</td><td>Unassisted</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Tibialis Raise <span class="superset-label">superset</span> &nbsp;+ Single-Leg Calf Raise</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Tibs first, then calf raise, then rest.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Tibialis (Sets × Reps)</th><th>Calf Raise (each leg)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3 × 20 (slow &amp; controlled)</td><td>3 × 10 — 3-2-1-0 tempo</td></tr>
+          <tr><td>2</td><td>3 × 20</td><td>3 × 12</td></tr>
+          <tr><td>3</td><td>3 × 20</td><td>3 × 12</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 15</td><td>2 × 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Session A — Trap Bar RDL</h3>
+    <div class="section-block">
+      <h4>Trap Bar RDL — 4-2-1-0 tempo</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Feel the stretch in hamstrings at the bottom, pause, drive up.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3 × 8</td><td>RPE 7</td></tr>
+          <tr><td>2</td><td>3 × 8</td><td>RPE 8</td></tr>
+          <tr><td>3</td><td>3 × 6</td><td>RPE 8–9</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 6</td><td>RPE 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Session B — Bulgarian Split Squat</h3>
+    <div class="section-block">
+      <h4>Bulgarian Split Squat — 4-3-1-0 tempo</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Rear foot elevated, upright torso. Same 3s hold at the bottom.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps (each leg)</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3 × 6</td><td>RPE 7 (light DB or bodyweight)</td></tr>
+          <tr><td>2</td><td>3 × 6</td><td>RPE 8</td></tr>
+          <tr><td>3</td><td>3 × 5</td><td>RPE 8–9</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 5</td><td>RPE 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Sprint Sessions — Upper Body Days (2×/week)</h3>
+    <div class="section-block">
+      <ul>
+        <li><strong>Volume:</strong> 4–6 × 20–30m</li>
+        <li><strong>Intensity:</strong> ~85% effort — fast, not maximal</li>
+        <li><strong>Rest:</strong> 90s–2 min (full recovery)</li>
+        <li><strong>Timing:</strong> Before upper body lifting, after warm-up</li>
+        <li><strong>Rule:</strong> Do not sprint on lower body days</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div id="phase1" class="tab">
+    <h2>Phase 1: Volume Building</h2>
+    <p class="subtitle">Weeks 5–8 &nbsp;·&nbsp; <span class="badge badge-phase1">Capacity Building</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="label">Stimulus</div>
+        <div class="value">Concentric Volume</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Tempo</div>
+        <div class="value">Standard controlled</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Frequency</div>
+        <div class="value">3 lift + 1 jump/week</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Deload</div>
+        <div class="value">Week 8</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Goal is capacity, not strength.</strong> Everything is deliberately general and moderate so adaptations stack correctly. Rushing intensity now burns stimulus that works better later.
+    </div>
+
+    <h3>Sunday — Jump Session</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>35 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>5 min</td><td>3–4 full approach jumps at 100% intent, 60–90s rest between</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warning" style="margin-top:12px">
+        Don't chase PRs. Practising max intent after a long warm-up. The ratio is deliberately conservative — tendons are fresh out of Phase 0.
+      </div>
+    </div>
+
+    <h3>Lifting Days — Mon / Wed / Fri</h3>
+
+    <div class="section-block">
+      <h4>CNS Primers — Always First</h4>
+      <ul>
+        <li>Standing CMJ × 2 reps via My Jump Lab</li>
+        <li>Max intent every rep, 3 min full rest between</li>
+      </ul>
+      <div class="callout danger" style="margin-top:10px">
+        If either jump &gt;10% below recent best → <strong>cut all working sets by 50%</strong>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h4>Trap Bar Jump Squat</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Always before squats. Load stays light — speed and intent are the stimulus. Primes transition to power cleans in Phase 2.</p>
+      <p style="font-size:0.85rem;margin-bottom:10px"><strong>Load:</strong> ~20% back squat max (~33kg) — fixed all weeks &nbsp;·&nbsp; Rest 2–3 min between sets</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>5 × 4</td></tr>
+          <tr><td>6</td><td>5 × 4</td></tr>
+          <tr><td>7</td><td>5 × 4</td></tr>
+          <tr class="deload"><td>8</td><td>3 × 4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Back Squat</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Full ROM, controlled descent. No strict tempo. Intent on the concentric.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>4 × 10</td><td>107.5kg (65%)</td></tr>
+          <tr><td>6</td><td>4 × 8</td><td>112.5kg (68%)</td></tr>
+          <tr><td>7</td><td>5 × 6</td><td>115kg (70%)</td></tr>
+          <tr class="deload"><td>8</td><td>2 × 8</td><td>107.5kg (65%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Wall Sit Isometric Hold</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Immediately after squats. ~60° knee flexion, back flat, knees over toes.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Duration</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td>5–7</td><td>2 × 45s</td><td>2 min</td></tr>
+          <tr class="deload"><td>8</td><td>1 × 45s</td><td>2 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Sumo Deadlift</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Replaces trap bar RDL from Phase 0. Focus on hip hinge, not grinding loads.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>3 × 10</td><td>7</td></tr>
+          <tr><td>6</td><td>3 × 8</td><td>8</td></tr>
+          <tr><td>7</td><td>4 × 8</td><td>8–9</td></tr>
+          <tr class="deload"><td>8</td><td>2 × 8</td><td>6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Leg Press / Hack Squat</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Additional quad volume. Not the place for ego loading.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>3 × 12</td><td>7</td></tr>
+          <tr><td>6</td><td>3 × 12</td><td>8</td></tr>
+          <tr><td>7</td><td>3 × 10</td><td>8</td></tr>
+          <tr class="deload"><td>8</td><td>2 × 10</td><td>6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Nordic Hamstring Curl</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Continues from Phase 0. Reduce band assistance or add load week to week.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>3 × 12</td><td>RPE 7 — establish band setup</td></tr>
+          <tr><td>6</td><td>3 × 12</td><td>RPE 8 — reduce assistance</td></tr>
+          <tr><td>7</td><td>3 × 12</td><td>RPE 8–9 — reduce further</td></tr>
+          <tr class="deload"><td>8</td><td>2 × 12</td><td>RPE 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Tibialis Raise <span class="superset-label">superset</span> &nbsp;+ Single-Leg Calf Raise</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Same structure as Phase 0. Tibs first, then calf raise, then rest. Full ROM — heel below step at bottom.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Tibialis (Sets × Reps)</th><th>Calf Raise (each leg)</th></tr></thead>
+        <tbody>
+          <tr><td>5–7</td><td>3 × 20 (slow &amp; controlled)</td><td>3 × 10–12</td></tr>
+          <tr class="deload"><td>8</td><td>2 × 15</td><td>2 × 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- UPPER BODY -->
+  <div id="upper" class="tab">
+    <h2>Upper Body Program</h2>
+    <p class="subtitle">Tue &amp; Thu &nbsp;·&nbsp; Kept separate to avoid interference with jump work</p>
+
+    <div class="callout" style="margin-bottom:20px">
+      <strong>Progression rule:</strong> Increase weight when last set finishes at <strong>RPE ≤8 across 2 consecutive sessions</strong>. Increment: 1.25kg. Rep completion trend counts as progress even without weight increase.
+    </div>
+
+    <div class="section-block">
+      <h4>Tuesday</h4>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th>Sets × Reps</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Incline Bench Press</td><td>5 × 5</td></tr>
+          <tr><td>2</td><td>Weighted Pull-ups</td><td>3 × 6</td></tr>
+          <tr><td>3</td><td>Weighted Bar Dips</td><td>3 × 6</td></tr>
+          <tr><td>4</td><td>Overhead Press</td><td>5 × 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Thursday</h4>
+      <table>
+        <thead><tr><th>#</th><th>Exercise</th><th>Sets × Reps</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Barbell Rows</td><td>3 × 8</td></tr>
+          <tr><td>2</td><td>Overhead Press</td><td>5 × 5</td></tr>
+          <tr><td>3</td><td>Weighted Chin-ups</td><td>3 × 6</td></tr>
+          <tr><td>4</td><td>Incline Bench Press</td><td>5 × 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div id="goals" class="tab">
+    <h2>Goals &amp; Tracking</h2>
+    <p class="subtitle">Week 16 targets &amp; long-term moonshot</p>
+
+    <h3>Baseline (Pre-Program)</h3>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="label">Bodyweight</div>
+        <div class="value">~99.5–100kg</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">CMJ (backboard)</div>
+        <div class="value">~24"</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Approach (backboard)</div>
+        <div class="value">~26.5"</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Back Squat est. 1RM</div>
+        <div class="value">~165kg</div>
+      </div>
+      <div class="meta-card">
+        <div class="label">Power Clean est. max</div>
+        <div class="value">~110kg</div>
+      </div>
+    </div>
+
+    <h3>Week 16 Targets</h3>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-label">Vertical Jump</div>
+        <div class="goal-value">+2" standing vertical</div>
+        <div class="goal-desc">Minimum increase by end of Week 16</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-label">Back Squat</div>
+        <div class="goal-value">1.5× bodyweight 5RM</div>
+        <div class="goal-desc">With perfect 4-3-1-0 tempo</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-label">Tendon Health</div>
+        <div class="goal-value">Zero sharp pain</div>
+        <div class="goal-desc">No sharp patellar pain during pogo jumps</div>
+      </div>
+    </div>
+
+    <h3>Moonshot — Week 48 (Cycle 6)</h3>
+    <div class="goals-grid">
+      <div class="goal-card" style="border-color: rgba(247,153,79,0.3)">
+        <div class="goal-label">Approach Vertical</div>
+        <div class="goal-value" style="color:var(--accent2)">35"</div>
+        <div class="goal-desc">88.9cm max approach vertical</div>
+      </div>
+      <div class="goal-card" style="border-color: rgba(247,153,79,0.3)">
+        <div class="goal-label">Back Squat</div>
+        <div class="goal-value" style="color:var(--accent2)">200kg</div>
+        <div class="goal-desc">Elite strength target</div>
+      </div>
+      <div class="goal-card" style="border-color: rgba(247,153,79,0.3)">
+        <div class="goal-label">Power Clean</div>
+        <div class="goal-value" style="color:var(--accent2)">140kg</div>
+        <div class="goal-desc">Elite strength target</div>
+      </div>
+    </div>
+
+    <h3>Testing Protocol</h3>
+    <div class="section-block">
+      <ul>
+        <li><strong>Verticals:</strong> Tested in Week 8. Video against backboard with ruler — peak touch height.</li>
+        <li><strong>Back Squat:</strong> Track 5RM each cycle. Estimated 1RM via Epley. No true max until Cycle 6.</li>
+        <li><strong>Power Clean:</strong> Record top working set each cycle. True max only at Cycle 6 moonshot.</li>
+        <li><strong>Bodyweight:</strong> Test day, morning, fasted.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRINCIPLES -->
+  <div id="principles" class="tab">
+    <h2>Guiding Principles</h2>
+    <p class="subtitle">Core rules that override all programming decisions</p>
+
+    <div class="principles-list">
+      <div class="principle">
+        <div class="principle-num">1</div>
+        <div>
+          <div class="principle-title">The 10% Rule (Auto-regulation)</div>
+          <div class="principle-body">If CNS primer jumps read &gt;10% below your recent best → cut all working sets by 50%. Do not grind through heavy legs.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">2</div>
+        <div>
+          <div class="principle-title">Intent Over Load</div>
+          <div class="principle-body">Moving a light weight fast is often superior to moving a heavy weight slowly. Every concentric phase must be performed with maximal violent intent regardless of weight.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">3</div>
+        <div>
+          <div class="principle-title">Freshness Priority</div>
+          <div class="principle-body">The CNS drives the vertical jump. You cannot train it while fatigued. Always perform jumps and sprints <strong>before</strong> lifting — no exceptions.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">4</div>
+        <div>
+          <div class="principle-title">Respect the Tempo</div>
+          <div class="principle-body">Phase 0's 4s eccentric and 3s isometric are not suggestions. They are the mechanical stress required to remodel tendons. No shortcuts.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">5</div>
+        <div>
+          <div class="principle-title">Quality Over Quantity</div>
+          <div class="principle-body">A vertical jump is a 0.2-second explosion. 5 perfect jumps beats 50 mediocre ones. If the "pop" is gone, the session is over.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">6</div>
+        <div>
+          <div class="principle-title">Specificity Balance</div>
+          <div class="principle-body">As lifting days get more specific, general days must get more general. Never run both at high specificity simultaneously — that's how injuries happen.</div>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">7</div>
+        <div>
+          <div class="principle-title">Copenhagen Planks Every Session</div>
+          <div class="principle-body">Non-negotiable warm-up item. 3 × 20–30s each side. Do not skip regardless of time pressure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
