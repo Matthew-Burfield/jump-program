@@ -1,0 +1,404 @@
+cycle: 1
+started: 2026-03-25
+ended: 2026-04-19
+
+# Best CMJ reading from My Jump Lab each week (used for 10% rule baseline)
+cns_primers:
+  week_1_best_cmj:
+  week_2_best_cmj:
+  week_3_best_cmj:
+  week_4_best_cmj:
+  week_5_best_cmj:
+  week_6_best_cmj:
+  week_7_best_cmj:
+  week_8_best_cmj:
+
+# ── Phase 0: Tendon Armor (Weeks 1–4) ────────────────────────────────────────
+
+phase_0:
+  back_squat:
+    - week: 1
+      load_kg: 100
+      sets: 4
+      reps: 5
+      rpe: 6
+      notes:
+    - week: 2
+      load_kg: 108
+      sets: 4
+      reps: 5
+      rpe: 7
+      notes:
+    - week: 3
+      load_kg: 115
+      sets: 4
+      reps: 5
+      rpe: 8
+      notes:
+    - week: 4 # deload
+      load_kg: 123
+      sets: 2
+      reps: 5
+      rpe: 8
+      notes:
+
+  wall_sit:
+    - week: 1
+      sets: 2
+      weight_kg: 0
+      duration_s: 45
+      notes:
+    - week: 2
+      sets: 2
+      weight_kg: 5
+      duration_s: 45
+      notes:
+    - week: 3
+      sets: 2
+      weight_kg: 10
+      duration_s: 45
+      notes:
+    - week: 4 # deload
+      sets: 1
+      weight_kg: 15
+      duration_s: 45
+      notes:
+
+  # Session A
+  trap_bar_rdl:
+    - week: 1
+      load_kg: 50
+      sets: 3
+      reps: 8
+      rpe:
+      notes:
+    - week: 2
+      load_kg: 55
+      sets: 3
+      reps: 8
+      rpe: 8
+      notes:
+    - week: 3
+      load_kg: 60
+      sets: 3
+      reps: 8-9
+      rpe:
+      notes:
+    - week: 4 # deload
+      load_kg: 65
+      sets: 1
+      reps: 6
+      rpe:
+      notes:
+
+  # Session B
+  bulgarian_split_squat:
+    - week: 1
+      load_kg: 40
+      sets: 3
+      reps: 7
+      rpe:
+      notes:
+    - week: 2
+      load_kg: 50
+      sets: 3
+      reps: 6
+      rpe: 8
+      notes:
+    - week: 3
+      load_kg: 55
+      sets: 3
+      reps: 5
+      rpe: 8-9
+      notes:
+    - week: 4 # deload
+      load_kg: 60
+      sets: 1
+      reps: 6
+      rpe: 8
+      notes:
+
+  nordic_hamstring_curl:
+    - week: 1
+      band_assist: true
+      bands: "black and red"
+      sets: 3
+      reps: 6
+      notes:
+    - week: 2
+      band_assist: true
+      bands: "black and yellow"
+      sets: 3
+      reps: 6
+      notes:
+    - week: 3
+      band_assist: true
+      bands: "red, gray and yellow"
+      sets: 3
+      reps: 6
+      notes:
+    - week: 4 # deload
+      band_assist: true
+      bands: "red and yellow"
+      sets: 1
+      reps: 6
+      notes:
+
+  tibialis_raise:
+    - week: 1
+      sets: 3
+      reps: 20
+      weight_kg: 12.5
+      notes:
+    - week: 2
+      sets: 3
+      reps: 20
+      weight_kg: 12.5
+      notes:
+    - week: 3
+      sets: 3
+      reps: 20
+      weight_kg: 12.5
+      notes:
+    - week: 4 # deload
+      sets: 1
+      reps: 30
+      weight_kg: 10
+      notes:
+
+  single_leg_seating_calf_raise:
+    - week: 1
+      load_kg: 70
+      sets: 3
+      reps: 20
+      notes:
+    - week: 2
+      load_kg: 70
+      sets: 3
+      reps: 20
+      notes:
+    - week: 3
+      load_kg: 70
+      sets: 3
+      reps: 20
+      notes:
+    - week: 4 # deload
+      load_kg: 60
+      sets: 1
+      reps: 30
+      notes:
+
+# ── Phase 1: Volume Building (Weeks 5–8) ─────────────────────────────────────
+
+phase_1:
+  # Jump session (Sunday)
+  jump_session:
+    - week: 5
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 6
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 7
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 8 # deload — warm-up only
+      notes:
+
+  trap_bar_jump_squat:
+    - week: 5
+      load_kg: 33
+      sets: 5
+      reps: 4
+      notes:
+    - week: 6
+      load_kg: 33
+      sets: 5
+      reps: 4
+      notes:
+    - week: 7
+      load_kg: 33
+      sets: 5
+      reps: 4
+      notes:
+    - week: 8 # deload
+      load_kg: 33
+      sets: 3
+      reps: 4
+      notes:
+
+  back_squat:
+    - week: 5
+      load_kg: 107.5
+      sets: 4
+      reps: 10
+      rpe:
+      notes:
+    - week: 6
+      load_kg: 112.5
+      sets: 4
+      reps: 8
+      rpe:
+      notes:
+    - week: 7
+      load_kg: 115
+      sets: 5
+      reps: 6
+      rpe:
+      notes:
+    - week: 8 # deload
+      load_kg: 107.5
+      sets: 2
+      reps: 8
+      rpe:
+      notes:
+
+  wall_sit:
+    - week: 5
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 6
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 7
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 8 # deload
+      sets: 1
+      duration_s: 45
+      notes:
+
+  sumo_deadlift:
+    - week: 5
+      load_kg:
+      sets: 3
+      reps: 10
+      rpe:
+      notes:
+    - week: 6
+      load_kg:
+      sets: 3
+      reps: 8
+      rpe:
+      notes:
+    - week: 7
+      load_kg:
+      sets: 4
+      reps: 8
+      rpe:
+      notes:
+    - week: 8 # deload
+      load_kg:
+      sets: 2
+      reps: 8
+      rpe:
+      notes:
+
+  leg_press_or_hack_squat:
+    - week: 5
+      load_kg:
+      sets: 3
+      reps: 12
+      rpe:
+      notes:
+    - week: 6
+      load_kg:
+      sets: 3
+      reps: 12
+      rpe:
+      notes:
+    - week: 7
+      load_kg:
+      sets: 3
+      reps: 10
+      rpe:
+      notes:
+    - week: 8 # deload
+      load_kg:
+      sets: 2
+      reps: 10
+      rpe:
+      notes:
+
+  nordic_hamstring_curl:
+    - week: 5
+      band_assist:
+      sets: 3
+      reps: 12
+      rpe:
+      notes:
+    - week: 6
+      band_assist:
+      sets: 3
+      reps: 12
+      rpe:
+      notes:
+    - week: 7
+      band_assist:
+      sets: 3
+      reps: 12
+      rpe:
+      notes:
+    - week: 8 # deload
+      band_assist:
+      sets: 2
+      reps: 12
+      rpe:
+      notes:
+
+  tibialis_raise:
+    - week: 5
+      sets: 3
+      reps: 20
+      notes:
+    - week: 6
+      sets: 3
+      reps: 20
+      notes:
+    - week: 7
+      sets: 3
+      reps: 20
+      notes:
+    - week: 8 # deload
+      sets: 2
+      reps: 15
+      notes:
+
+  single_leg_calf_raise:
+    - week: 5
+      load_kg:
+      sets: 3
+      reps: 10
+      notes:
+    - week: 6
+      load_kg:
+      sets: 3
+      reps: 12
+      notes:
+    - week: 7
+      load_kg:
+      sets: 3
+      reps: 12
+      notes:
+    - week: 8 # deload
+      load_kg:
+      sets: 2
+      reps: 10
+      notes:
+
+# ── End-of-Cycle Test Results (Week 8) ───────────────────────────────────────
+
+test_results:
+  bodyweight_kg:
+  cmj_backboard_inches:
+  approach_backboard_inches:
+  back_squat_5rm_kg:
+  back_squat_est_1rm_kg:
+  power_clean_top_set:
+  notes:
