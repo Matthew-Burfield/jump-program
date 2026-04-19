@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jump Program</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
   <style>
     :root {
       --bg: #0f1117;
@@ -290,6 +291,86 @@
     .goal-card .goal-value { font-size: 1.05rem; font-weight: 700; color: var(--accent); }
     .goal-card .goal-desc  { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
 
+    /* ── Phase Summary Card ── */
+    .phase-summary {
+      background: var(--surface);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .phase-summary-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .phase-summary-header .title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .phase-summary-header .dates {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .complete-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+    }
+
+    .summary-stat {
+      background: var(--surface2);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .summary-stat .s-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .summary-stat .s-value {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--success);
+    }
+
+    /* ── Actual cell highlight ── */
+    td.actual { color: var(--success); font-weight: 500; }
+    td.actual-empty { color: var(--muted); font-style: italic; }
+
+    /* ── Sub-label inside section-block ── */
+    .sub-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 14px 0 6px;
+    }
+
     /* ── Desktop scaling ── */
     @media (min-width: 640px) {
       header { padding: 18px 24px 0; }
@@ -346,6 +427,8 @@
       <strong>Tempo is non-negotiable.</strong> 4s down · 3s hold · 1s up. The 3s isometric at the bottom is where tendon remodelling happens. No shortcuts.
     </div>
 
+    <div id="phase0-summary"></div>
+
     <h3>CNS Primers — Always First</h3>
     <div class="section-block">
       <h4>Standing CMJ × 2 reps — measured via My Jump Lab</h4>
@@ -360,7 +443,7 @@
 
     <h3>Shared Work (Every Session)</h3>
 
-    <div class="section-block">
+    <div class="section-block" data-log-key="back_squat">
       <h4>Back Squat — 4-3-1-0 tempo</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">The 3s hold at the bottom is where tendon remodelling happens.</p>
       <table>
@@ -374,19 +457,21 @@
       </table>
     </div>
 
-    <div class="section-block">
+    <div class="section-block" data-log-key="wall_sit">
       <h4>Wall Sit Isometric Hold</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">~60° knee flexion (thighs roughly parallel). Knees tracking over toes, back flat. Should be uncomfortable by end of each hold.</p>
       <table>
         <thead><tr><th>Week</th><th>Sets × Duration</th><th>Rest</th></tr></thead>
         <tbody>
-          <tr><td>1–3</td><td>4 × 45s</td><td>2 min</td></tr>
+          <tr><td>1</td><td>4 × 45s</td><td>2 min</td></tr>
+          <tr><td>2</td><td>4 × 45s</td><td>2 min</td></tr>
+          <tr><td>3</td><td>4 × 45s</td><td>2 min</td></tr>
           <tr class="deload"><td>4</td><td>2 × 45s</td><td>2 min</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="section-block">
+    <div class="section-block" data-log-key="nordic_hamstring_curl">
       <h4>Nordic Hamstring Curl</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Minimum band assistance needed. Aim to reduce each week.</p>
       <table>
@@ -403,19 +488,30 @@
     <div class="section-block">
       <h4>Tibialis Raise <span class="superset-label">superset</span> &nbsp;+ Single-Leg Calf Raise</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Tibs first, then calf raise, then rest.</p>
-      <table>
-        <thead><tr><th>Week</th><th>Tibialis (Sets × Reps)</th><th>Calf Raise (each leg)</th></tr></thead>
+      <p class="sub-label">Tibialis Raise — slow &amp; controlled</p>
+      <table data-log-key="tibialis_raise">
+        <thead><tr><th>Week</th><th>Sets × Reps</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>3 × 20 (slow &amp; controlled)</td><td>3 × 10 — 3-2-1-0 tempo</td></tr>
-          <tr><td>2</td><td>3 × 20</td><td>3 × 12</td></tr>
-          <tr><td>3</td><td>3 × 20</td><td>3 × 12</td></tr>
-          <tr class="deload"><td>4</td><td>2 × 15</td><td>2 × 10</td></tr>
+          <tr><td>1</td><td>3 × 20</td></tr>
+          <tr><td>2</td><td>3 × 20</td></tr>
+          <tr><td>3</td><td>3 × 20</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 15</td></tr>
+        </tbody>
+      </table>
+      <p class="sub-label" style="margin-top:16px">Single-Leg Calf Raise — 3-2-1-0 tempo</p>
+      <table data-log-key="single_leg_seating_calf_raise">
+        <thead><tr><th>Week</th><th>Sets × Reps</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3 × 10</td></tr>
+          <tr><td>2</td><td>3 × 12</td></tr>
+          <tr><td>3</td><td>3 × 12</td></tr>
+          <tr class="deload"><td>4</td><td>2 × 10</td></tr>
         </tbody>
       </table>
     </div>
 
     <h3>Session A — Trap Bar RDL</h3>
-    <div class="section-block">
+    <div class="section-block" data-log-key="trap_bar_rdl">
       <h4>Trap Bar RDL — 4-2-1-0 tempo</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Feel the stretch in hamstrings at the bottom, pause, drive up.</p>
       <table>
@@ -430,7 +526,7 @@
     </div>
 
     <h3>Session B — Bulgarian Split Squat</h3>
-    <div class="section-block">
+    <div class="section-block" data-log-key="bulgarian_split_squat">
       <h4>Bulgarian Split Squat — 4-3-1-0 tempo</h4>
       <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Rear foot elevated, upright torso. Same 3s hold at the bottom.</p>
       <table>
@@ -799,6 +895,111 @@
     btn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  const LOG_URL = 'https://raw.githubusercontent.com/Matthew-Burfield/jump-program/main/logs/cycle-1.yaml';
+
+  async function loadLog() {
+    try {
+      const res = await fetch(LOG_URL);
+      if (!res.ok) return;
+      const data = jsyaml.load(await res.text());
+      if (data.phase_0) {
+        renderSummary(data);
+        renderActuals(data.phase_0);
+      }
+    } catch (e) {
+      console.warn('Could not load cycle log:', e);
+    }
+  }
+
+  function renderSummary(data) {
+    const p0 = data.phase_0;
+    if (!data.ended) return; // only show summary when phase is complete
+
+    const squatPeak = Math.max(...p0.back_squat.filter(w => w.load_kg).map(w => w.load_kg));
+    const bssPeak   = Math.max(...p0.bulgarian_split_squat.filter(w => w.load_kg).map(w => w.load_kg));
+    const calfPeak  = Math.max(...p0.single_leg_seating_calf_raise.filter(w => w.load_kg).map(w => w.load_kg));
+
+    document.getElementById('phase0-summary').innerHTML = `
+      <div class="phase-summary">
+        <div class="phase-summary-header">
+          <span class="title">Cycle 1 — Phase 0</span>
+          <span class="complete-badge">Complete</span>
+          <span class="dates">${data.started} → ${data.ended}</span>
+        </div>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <div class="s-label">Peak Back Squat</div>
+            <div class="s-value">${squatPeak}kg</div>
+          </div>
+          <div class="summary-stat">
+            <div class="s-label">Peak BSS</div>
+            <div class="s-value">${bssPeak}kg</div>
+          </div>
+          <div class="summary-stat">
+            <div class="s-label">Peak Calf Raise</div>
+            <div class="s-value">${calfPeak}kg</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function formatActual(key, entry) {
+    if (!entry) return null;
+    switch (key) {
+      case 'back_squat':
+      case 'trap_bar_rdl':
+      case 'bulgarian_split_squat':
+        if (!entry.load_kg) return null;
+        return entry.rpe ? `${entry.load_kg}kg · RPE ${entry.rpe}` : `${entry.load_kg}kg`;
+      case 'wall_sit':
+        if (entry.weight_kg == null) return null;
+        return entry.weight_kg === 0 ? 'BW' : `+${entry.weight_kg}kg`;
+      case 'nordic_hamstring_curl':
+        if (entry.bands) return entry.bands;
+        return entry.band_assist === false ? 'Unassisted' : null;
+      case 'tibialis_raise':
+        return entry.weight_kg != null ? `${entry.weight_kg}kg` : null;
+      case 'single_leg_seating_calf_raise':
+        return entry.load_kg != null ? `${entry.load_kg}kg` : null;
+      default:
+        return null;
+    }
+  }
+
+  function renderActuals(p0) {
+    // Handle section-blocks with data-log-key (one table per block)
+    document.querySelectorAll('[data-log-key]').forEach(el => {
+      const key = el.dataset.logKey;
+      const entries = p0[key];
+      if (!entries) return;
+
+      const table = el.tagName === 'TABLE' ? el : el.querySelector('table');
+      if (!table) return;
+
+      // Add "Actual" header
+      const th = document.createElement('th');
+      th.textContent = 'Actual';
+      table.querySelector('thead tr').appendChild(th);
+
+      // Add actual data per row
+      table.querySelectorAll('tbody tr').forEach((row, i) => {
+        const td = document.createElement('td');
+        const val = formatActual(key, entries[i]);
+        if (val) {
+          td.textContent = val;
+          td.className = 'actual';
+        } else {
+          td.textContent = '—';
+          td.className = 'actual-empty';
+        }
+        row.appendChild(td);
+      });
+    });
+  }
+
+  loadLog();
 </script>
 
 </body>
