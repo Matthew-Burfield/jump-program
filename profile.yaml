@@ -1,6 +1,6 @@
 # Physical attributes — update as measured
-height_cm: 185
-standing_reach_inches: 98
+height_cm: 190
+standing_reach_cm: 251
 wingspan_cm: 190
 preferred_foot: right
 
@@ -41,8 +41,8 @@ program:
 # Program targets
 goals:
   week_16:
-    cmj_improvement_inches: 2        # +2" standing vertical over baseline
-    back_squat_5rm_kg: 150           # 1.5× bodyweight
+    cmj_improvement_inches: 2 # +2" standing vertical over baseline
+    back_squat_5rm_kg: 150 # 1.5× bodyweight
   week_48:
     approach_backboard_inches: 35
     back_squat_1rm_kg: 200

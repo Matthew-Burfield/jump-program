@@ -1105,7 +1105,7 @@
     const el = document.getElementById('dash-profile');
     const fields = [
       { label: 'Height',         value: profile.height_cm             ? `${profile.height_cm}cm`            : null },
-      { label: 'Standing Reach', value: profile.standing_reach_inches  ? `${profile.standing_reach_inches}"` : null },
+      { label: 'Standing Reach', value: profile.standing_reach_cm ? `${profile.standing_reach_cm}cm` : null },
       { label: 'Wingspan',       value: profile.wingspan_cm            ? `${profile.wingspan_cm}cm`           : null },
       { label: 'Preferred Foot', value: profile.preferred_foot         || null                                       },
     ].filter(f => f.value);
