@@ -399,6 +399,18 @@
     .metric-src.from-cycle { color: var(--success); }
     .metric-src.from-base  { color: var(--muted); }
 
+    .phase-steps { display: flex; gap: 6px; margin: 8px 0 12px; flex-wrap: wrap; }
+    .phase-step {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .phase-step.done   { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.3); }
+    .phase-step.active { background: rgba(79,142,247,0.15); color: var(--accent);  border-color: rgba(79,142,247,0.3); }
+
     @media (min-width: 640px) {
       header { padding: 18px 24px 0; }
       nav { margin: 0 -24px; padding: 0 24px; }
@@ -943,6 +955,22 @@
     // add cycle-2.yaml, cycle-3.yaml here as you progress
   ];
 
+  const DEFAULT_PHASES = [
+    { num: 0, name: 'Tendon Armor',        weeks: 4 },
+    { num: 1, name: 'Volume Building',     weeks: 4 },
+    { num: 2, name: 'Intensification',     weeks: 4 },
+    { num: 3, name: 'Absolute Strength',   weeks: 4 },
+    { num: 4, name: 'Strength-Speed',      weeks: 4 },
+    { num: 5, name: 'Speed-Strength',      weeks: 4 },
+    { num: 6, name: 'Maximum Specificity', weeks: 4 },
+  ];
+
+  function fmtDate(d) {
+    if (!d) return '—';
+    if (d instanceof Date) return d.toISOString().slice(0, 10);
+    return String(d).slice(0, 10);
+  }
+
   async function fetchYaml(url) {
     try {
       const res = await fetch(url);
@@ -968,24 +996,33 @@
   // ── Dashboard ───────────────────────────────────────────────────────────────
 
   function renderDashboard(profile, cycles) {
-    renderPosition(cycles);
+    renderPosition(cycles, profile);
     renderMetrics(profile, cycles);
     renderPhysicalProfile(profile);
     renderGoals(profile, cycles);
   }
 
-  function renderPosition(cycles) {
+  function renderPosition(cycles, profile) {
     const el = document.getElementById('dash-position');
     if (!cycles.length) return;
 
-    const today = Date.now();
-    const CYCLE_WEEKS = 8;
-    const WEEK_MS = 7 * 24 * 3600 * 1000;
+    const phaseDefs = profile?.program?.phases || DEFAULT_PHASES;
+    const WEEK_MS   = 7 * 24 * 3600 * 1000;
 
+    // Build phase map with cumulative week boundaries
+    let cumWeeks = 0;
+    const phaseMap = phaseDefs.map(p => {
+      const startWeek = cumWeeks + 1;
+      cumWeeks += p.weeks;
+      return { ...p, startWeek, endWeek: cumWeeks };
+    });
+    const totalWeeks = cumWeeks;
+
+    const today = Date.now();
     let activeCycle = null;
     for (let i = cycles.length - 1; i >= 0; i--) {
       const start = new Date(cycles[i].started).getTime();
-      if (today >= start && today <= start + CYCLE_WEEKS * WEEK_MS) {
+      if (today >= start && today <= start + totalWeeks * WEEK_MS) {
         activeCycle = cycles[i];
         break;
       }
@@ -994,20 +1031,30 @@
 
     if (activeCycle) {
       const days = Math.floor((today - new Date(activeCycle.started).getTime()) / 86400000);
-      const week = Math.min(Math.floor(days / 7) + 1, CYCLE_WEEKS);
-      const phaseName  = week <= 4 ? 'Phase 0' : week <= 8 ? 'Phase 1' : 'Phase 2';
-      const phaseLabel = week <= 4 ? 'Tendon Armor' : week <= 8 ? 'Volume Building' : 'Intensification';
-      const pct = Math.round((week / CYCLE_WEEKS) * 100);
+      const currentWeek = Math.min(Math.floor(days / 7) + 1, totalWeeks);
+      const currentPhase = phaseMap.find(p => currentWeek >= p.startWeek && currentWeek <= p.endWeek)
+        || phaseMap[phaseMap.length - 1];
+      const pct = Math.round((currentWeek / totalWeeks) * 100);
+
+      const pillsHtml = phaseMap.map(p => {
+        const isDone   = currentWeek > p.endWeek;
+        const isActive = p.num === currentPhase.num;
+        const cls = isDone ? 'done' : isActive ? 'active' : '';
+        const label = isDone ? `✓&nbsp;${p.num}` : String(p.num);
+        return `<span class="phase-step ${cls}" title="Phase ${p.num}: ${p.name}">${label}</span>`;
+      }).join('');
+
       el.innerHTML = `
         <div class="pos-card">
           <div class="pos-row">
             <span class="pos-cycle">Cycle ${activeCycle.cycle}</span>
-            <span class="pos-phase">${phaseName} &nbsp;·&nbsp; ${phaseLabel}</span>
-            <span class="pos-week">Week ${week} of ${CYCLE_WEEKS}</span>
+            <span class="pos-phase">Phase ${currentPhase.num} &nbsp;·&nbsp; ${currentPhase.name}</span>
+            <span class="pos-week">Week ${currentWeek} of ${totalWeeks}</span>
           </div>
+          <div class="phase-steps">${pillsHtml}</div>
           <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
           <div class="prog-labels">
-            <span>Started ${activeCycle.started}</span>
+            <span>Started ${fmtDate(activeCycle.started)}</span>
             <span>${pct}% complete</span>
           </div>
         </div>`;
@@ -1017,7 +1064,7 @@
           <div class="pos-row">
             <span class="pos-cycle">Cycle ${displayCycle.cycle}</span>
             <span class="complete-badge">Complete</span>
-            <span class="pos-week">${displayCycle.started} → ${displayCycle.ended || '—'}</span>
+            <span class="pos-week">${fmtDate(displayCycle.started)} → ${fmtDate(displayCycle.ended)}</span>
           </div>
           <p style="margin:0;font-size:0.85rem;color:var(--muted)">No active cycle — add the next cycle log to continue tracking.</p>
         </div>`;

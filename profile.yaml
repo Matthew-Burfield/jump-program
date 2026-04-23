@@ -13,6 +13,31 @@ baseline:
   back_squat_est_1rm_kg: 165
   power_clean_top_set_kg: 110
 
+# Program structure — drives dashboard week count and phase indicators
+program:
+  phases:
+    - num: 0
+      name: Tendon Armor
+      weeks: 4
+    - num: 1
+      name: Volume Building
+      weeks: 4
+    - num: 2
+      name: Intensification
+      weeks: 4
+    - num: 3
+      name: Absolute Strength
+      weeks: 4
+    - num: 4
+      name: Strength-Speed
+      weeks: 4
+    - num: 5
+      name: Speed-Strength
+      weeks: 4
+    - num: 6
+      name: Maximum Specificity
+      weeks: 4
+
 # Program targets
 goals:
   week_16:
