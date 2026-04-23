@@ -227,6 +227,11 @@
 
     .badge-phase0 { background: rgba(247, 153, 79, 0.15); color: var(--accent2); border: 1px solid rgba(247, 153, 79, 0.3); }
     .badge-phase1 { background: rgba(79, 142, 247, 0.15); color: var(--accent);  border: 1px solid rgba(79, 142, 247, 0.3); }
+    .badge-phase2 { background: rgba(139, 92, 246, 0.15); color: #8b5cf6;        border: 1px solid rgba(139, 92, 246, 0.3); }
+    .badge-phase3 { background: rgba(239, 68, 68, 0.15);  color: var(--danger);  border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-phase4 { background: rgba(20, 184, 166, 0.15); color: #14b8a6;        border: 1px solid rgba(20, 184, 166, 0.3); }
+    .badge-phase5 { background: rgba(34, 197, 94, 0.15);  color: var(--success); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-phase6 { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
 
     .superset-label {
       display: inline-block;
@@ -432,6 +437,11 @@
     <button class="active" onclick="showTab('dashboard', this)">Dashboard</button>
     <button onclick="showTab('phase0', this)">Phase 0</button>
     <button onclick="showTab('phase1', this)">Phase 1</button>
+    <button onclick="showTab('phase2', this)">Phase 2</button>
+    <button onclick="showTab('phase3', this)">Phase 3</button>
+    <button onclick="showTab('phase4', this)">Phase 4</button>
+    <button onclick="showTab('phase5', this)">Phase 5</button>
+    <button onclick="showTab('phase6', this)">Phase 6</button>
     <button onclick="showTab('upper', this)">Upper Body</button>
     <button onclick="showTab('goals', this)">Goals</button>
     <button onclick="showTab('principles', this)">Principles</button>
@@ -759,6 +769,639 @@
           <tr class="deload"><td>8</td><td>2 × 15</td><td>2 × 10</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div id="phase2" class="tab">
+    <h2>Phase 2: Intensification</h2>
+    <p class="subtitle">Weeks 9–12 &nbsp;·&nbsp; <span class="badge badge-phase2">Intensification</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card"><div class="label">Stimulus</div><div class="value">Olympic Lifting</div></div>
+      <div class="meta-card"><div class="label">Tempo</div><div class="value">Standard controlled</div></div>
+      <div class="meta-card"><div class="label">Frequency</div><div class="value">3 lift + 1 jump/week</div></div>
+      <div class="meta-card"><div class="label">Deload</div><div class="value">Week 12</div></div>
+    </div>
+
+    <div class="callout">
+      <strong>Moving up the force-velocity curve.</strong> Olympic lifting replaces the jump squat. Reps drop, loads climb, power output increases. Accessories prime eccentric strength for Phase 3.
+    </div>
+
+    <h3>Sunday — Jump Session</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>30 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>10 min</td><td>6–8 full approach jumps at 100% intent, 60–90s rest between</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Lifting Days — Mon / Wed / Fri</h3>
+
+    <div class="section-block">
+      <h4>CNS Primers — Always First</h4>
+      <ul>
+        <li>Standing CMJ × 2 reps via My Jump Lab</li>
+        <li>Max intent every rep, 3 min full rest between</li>
+      </ul>
+      <div class="callout danger" style="margin-top:10px">
+        If either jump &gt;10% below recent best → <strong>cut all working sets by 50%</strong>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h4>Power Clean — Monday &amp; Friday</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Full triple extension. Catch in the power position — no squat under. Reset between reps. Rest 2–3 min between sets.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>5 × 4</td><td>82.5kg (~75%)</td></tr>
+          <tr><td>10</td><td>6 × 3</td><td>87.5kg (~80%)</td></tr>
+          <tr><td>11</td><td>7 × 3</td><td>92.5kg (~85%)</td></tr>
+          <tr class="deload"><td>12</td><td>4 × 3</td><td>80kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Clean Pull — Wednesday</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Drive through the floor, full extension at the top — no catch. Heavier than the power clean. Builds first-pull strength that feeds back into the clean.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>5 × 4</td><td>100kg</td></tr>
+          <tr><td>10</td><td>6 × 3</td><td>100kg</td></tr>
+          <tr><td>11</td><td>7 × 3</td><td>100kg</td></tr>
+          <tr class="deload"><td>12</td><td>4 × 3</td><td>90kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Back Squat</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Intensity is higher than Phase 1 — these sets should feel heavy. Full ROM, controlled descent. Intent on the concentric.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>4 × 8</td><td>120kg (~73%)</td></tr>
+          <tr><td>10</td><td>4 × 6</td><td>127.5kg (~77%)</td></tr>
+          <tr><td>11</td><td>5 × 6</td><td>132.5kg (~80%)</td></tr>
+          <tr class="deload"><td>12</td><td>3 × 6</td><td>115kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Wall Sit Isometric Hold</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Immediately after squats. Patellar tendon maintenance — keeps the Phase 0 stimulus alive.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Duration</th><th>Rest</th></tr></thead>
+        <tbody>
+          <tr><td>9–11</td><td>2 × 45s</td><td>2 min</td></tr>
+          <tr class="deload"><td>12</td><td>1 × 45s</td><td>2 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Trap Bar RDL — Eccentric Focus</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Back from Phase 0, but now heavier — the goal is eccentric strength. Lower reps, more load, full control on the way down.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>3 × 6</td><td>8</td></tr>
+          <tr><td>10</td><td>3 × 5</td><td>8–9</td></tr>
+          <tr><td>11</td><td>4 × 5</td><td>9</td></tr>
+          <tr class="deload"><td>12</td><td>2 × 5</td><td>7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Nordic Hamstring Curl — Add Load</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Hold a plate or use a weight vest. Control the descent, no crash at the bottom.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>9</td><td>3 × 6</td><td>Light added load</td></tr>
+          <tr><td>10</td><td>3 × 6</td><td>Increase load or reps</td></tr>
+          <tr><td>11</td><td>3 × 5</td><td>RPE 9 — heavy</td></tr>
+          <tr class="deload"><td>12</td><td>2 × 5</td><td>Back off — bodyweight OK</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Tibialis Raise <span class="superset-label">superset</span> &nbsp;+ Single-Leg Calf Raise</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Calf raise moves to lower reps with added load. Tibs first, then calf raise, then rest.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Tibialis (Sets × Reps)</th><th>Calf Raise (each leg)</th></tr></thead>
+        <tbody>
+          <tr><td>9–11</td><td>3 × 20 (slow &amp; controlled)</td><td>3 × 6 — added load</td></tr>
+          <tr class="deload"><td>12</td><td>2 × 15</td><td>2 × 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>General Days — Tue / Thu</h3>
+    <div class="section-block">
+      <p style="font-size:0.88rem;margin-bottom:8px">Upper body lifting (see Upper Body tab), then tempo runs.</p>
+      <ul>
+        <li><strong>Tempo Runs:</strong> 8–10 × 100m @ 70–75% effort — walk back as rest</li>
+        <li>Keep it sub-lactic — uncomfortable but never painful legs</li>
+        <li>Sprint work from Phase 0/1 is retired; this is aerobic conditioning</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div id="phase3" class="tab">
+    <h2>Phase 3: Absolute Strength</h2>
+    <p class="subtitle">Weeks 13–16 &nbsp;·&nbsp; <span class="badge badge-phase3">Peak Strength</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card"><div class="label">Stimulus</div><div class="value">Supramaximal Pulls</div></div>
+      <div class="meta-card"><div class="label">Tempo</div><div class="value">Standard controlled</div></div>
+      <div class="meta-card"><div class="label">Frequency</div><div class="value">3 lift + 1 jump/week</div></div>
+      <div class="meta-card"><div class="label">Deload</div><div class="value">Week 16</div></div>
+    </div>
+
+    <div class="callout warning">
+      <strong>10 sets on the squat is not a typo.</strong> This is the absolute strength peak — rest 3+ min between sets. Sets are unusually high by design. The accessories prime eccentric work for Phase 4.
+    </div>
+
+    <h3>Sunday — Jump Session</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>25 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>15 min</td><td>10–12 full approach jumps at 100% intent, 60–90s rest between</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:12px">
+        Real jump progress starts here. Strength base from the lifting is beginning to express itself.
+      </div>
+    </div>
+
+    <h3>Lifting Days — Mon / Wed / Fri</h3>
+
+    <div class="section-block">
+      <h4>CNS Primers — Always First</h4>
+      <ul>
+        <li>Standing CMJ × 2 reps via My Jump Lab</li>
+        <li>Max intent every rep, 3 min full rest between</li>
+      </ul>
+      <div class="callout danger" style="margin-top:10px">
+        If either jump &gt;10% below recent best → <strong>cut all working sets by 50%</strong>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h4>Clean Pull — Supramaximal</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Heavier than your power clean max. Drive through the floor, full extension at the top — no catch. Builds first-pull strength; power cleans will feel light after this phase.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>13</td><td>6 × 3</td><td>115kg (~105% clean)</td></tr>
+          <tr><td>14</td><td>7 × 3</td><td>117.5kg (~107%)</td></tr>
+          <tr><td>15</td><td>8 × 3</td><td>120kg (~109%)</td></tr>
+          <tr class="deload"><td>16</td><td>4 × 3</td><td>105kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Back Squat — Near Max</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Every set must be a quality set. Rest fully between — do not rush the rest periods.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>13</td><td>8 × 3</td><td>137.5kg (~83%)</td></tr>
+          <tr><td>14</td><td>10 × 3</td><td>142.5kg (~86%)</td></tr>
+          <tr><td>15</td><td>10 × 2</td><td>150kg (~91%)</td></tr>
+          <tr class="deload"><td>16</td><td>5 × 2</td><td>130kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Nordic Hamstring Curl — Eccentric Primer</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Full effort, control the descent. Priming Phase 4's rack eccentric work — treat these seriously.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>13</td><td>3 × 5</td><td>Heavy — RPE 9</td></tr>
+          <tr><td>14</td><td>3 × 5</td><td>Maintain or progress</td></tr>
+          <tr><td>15</td><td>3 × 5</td><td>RPE 9</td></tr>
+          <tr class="deload"><td>16</td><td>2 × 5</td><td>RPE 7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>2-Up / 1-Down Calf Raise — Eccentric Primer</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Use both legs to raise, lower on one leg under full control. Full ROM — heel below step at the bottom. The slow single-leg eccentric is the stimulus.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps (each leg)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>13</td><td>3 × 6</td><td>Bodyweight or light load</td></tr>
+          <tr><td>14</td><td>3 × 6</td><td>Add load if comfortable</td></tr>
+          <tr><td>15</td><td>3 × 6</td><td>RPE 8–9</td></tr>
+          <tr class="deload"><td>16</td><td>2 × 6</td><td>Reduce load</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>General Days — Tue / Thu</h3>
+    <div class="section-block">
+      <ul>
+        <li><strong>Jump circuits in sand:</strong> 20–30 sec per circuit — toe touch jumps, tuck jumps, single-leg hops, spin jumps. Rest fully between circuits. Sub-maximal only.</li>
+        <li><strong>Tempo runs:</strong> 30–45 sec @ controlled effort, <strong>3 min rest</strong> between. More reps/sets than Phase 2. Stay sub-lactic.</li>
+        <li>No heavy lower body gym work on these days.</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div id="phase4" class="tab">
+    <h2>Phase 4: Strength-Speed</h2>
+    <p class="subtitle">Weeks 17–20 &nbsp;·&nbsp; <span class="badge badge-phase4">Eccentric Emphasis</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card"><div class="label">Stimulus</div><div class="value">Eccentric + Triple Extension</div></div>
+      <div class="meta-card"><div class="label">Tempo</div><div class="value">Explosive / Controlled</div></div>
+      <div class="meta-card"><div class="label">Frequency</div><div class="value">3 lift + 1 jump/week</div></div>
+      <div class="meta-card"><div class="label">Deload</div><div class="value">Week 20</div></div>
+    </div>
+
+    <div class="callout danger">
+      <strong>CNS load is very high this phase.</strong> Move heavy bars fast. General days must be genuinely general — no running, no jump circuits. The 2-set cap on velocity accessories is non-negotiable.
+    </div>
+
+    <h3>Sunday — Jump Session</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>20 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>20 min</td><td>12–15 full approach jumps at 100% intent, 90–120s rest between</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Lifting Days — Mon / Wed / Fri</h3>
+
+    <div class="section-block">
+      <h4>CNS Primers — Always First</h4>
+      <ul>
+        <li>Standing CMJ × 2 reps via My Jump Lab</li>
+        <li>Max intent every rep, 3 min full rest between</li>
+      </ul>
+      <div class="callout danger" style="margin-top:10px">
+        If either jump &gt;10% below recent best → <strong>cut all working sets by 50%</strong>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h4>Power Clean — Monday &amp; Friday — Daily Max</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Strong from Phase 3 clean pull work — now cash it in. Work up in sets of 3 → 2 → 1. Stop when a rep slows noticeably or technique breaks. Record your top single.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Protocol</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td>Build: 3-3-2-1-1 &nbsp;·&nbsp; Aim for Phase 2 best or more</td></tr>
+          <tr><td>18</td><td>Build: 3-2-1-1-1 &nbsp;·&nbsp; Push the top single</td></tr>
+          <tr><td>19</td><td>Build: 3-2-1-1 &nbsp;·&nbsp; Absolute daily max</td></tr>
+          <tr class="deload"><td>20</td><td>Build: 3-3-2 &nbsp;·&nbsp; Stop at RPE 8. No daily max.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Clean Pull — Wednesday</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Maintains pull strength while Mon/Fri focus on max cleans.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td>4 × 3</td><td>116kg (~105% clean)</td></tr>
+          <tr><td>18</td><td>5 × 3</td><td>118kg (~107%)</td></tr>
+          <tr><td>19</td><td>5 × 3</td><td>121kg (~110%)</td></tr>
+          <tr class="deload"><td>20</td><td>3 × 3</td><td>105kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Eccentric Split Squat (Safety Bar)</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Rear foot elevated. Safety bar on shoulders — use the rack uprights to assist the concentric on working sets. The eccentric descent is the stimulus.</p>
+      <p class="sub-label">Build-up sets — all weeks</p>
+      <p style="font-size:0.85rem;margin-bottom:10px">3 × 5 at moderate load, normal tempo. Grooves the pattern before the supramaximal work.</p>
+      <p class="sub-label">Working sets</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td>3 × 3</td><td>Slightly above split squat max</td></tr>
+          <tr><td>18</td><td>3 × 3</td><td>Increase vs Week 17</td></tr>
+          <tr><td>19</td><td>3 × 2</td><td>Push supramaximal — hands assist fully</td></tr>
+          <tr class="deload"><td>20</td><td>2 × 3</td><td>Back to comfortable load</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Rack Accentuated Eccentric (Back Squat — Eccentric Only)</h4>
+      <div class="callout warning" style="margin-bottom:12px">
+        <strong>Setup:</strong> Set safety bars just below parallel depth. Load 110–115% of squat max (~182–190kg). Un-rack, lower under full control to the safeties, let it settle completely, then step out and re-rack. <strong>Un-rack fresh each rep.</strong> No bounce, no concentric.
+      </div>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td>4 × 3</td><td>182.5kg (~110% squat max)</td></tr>
+          <tr><td>18</td><td>4 × 3</td><td>185kg (~112%)</td></tr>
+          <tr><td>19</td><td>5 × 3</td><td>187.5kg (~114%)</td></tr>
+          <tr class="deload"><td>20</td><td>3 × 3</td><td>175kg (~106%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Full ROM Deadlift (from floor)</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Standard deadlift — full range from the floor. Keeps posterior chain strong. Not a max effort — treat as accessory.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>RPE</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td>3 × 4</td><td>7–8</td></tr>
+          <tr><td>18</td><td>3 × 3</td><td>8</td></tr>
+          <tr><td>19</td><td>3 × 3</td><td>8–9</td></tr>
+          <tr class="deload"><td>20</td><td>2 × 4</td><td>6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>High-Velocity Accessories — 2 Sets Maximum</h4>
+      <div class="callout warning" style="margin-bottom:12px">
+        <strong>Do not exceed 2 sets.</strong> Neural fatigue accumulates extremely fast in Phase 4. Exceeding this flattens the jump session.
+      </div>
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Cue</th></tr></thead>
+        <tbody>
+          <tr><td>High-velocity calf raise</td><td>2 × 6</td><td>As fast as possible off the ground, full extension at top</td></tr>
+          <tr><td>Drop RDL</td><td>2 × 5</td><td>Drop fast, drive up explosively — SSC emphasis</td></tr>
+          <tr><td>Bouncing calf raise</td><td>2 × 8</td><td>Stay on balls of feet, minimal ground contact</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>General Days — Tue / Thu</h3>
+    <div class="section-block">
+      <ul>
+        <li>Bodyweight circuits only — no loaded lower body</li>
+        <li>Upper body: bench, rows, pull-ups</li>
+        <li><strong>No tempo runs</strong> — tendons and joints need the recovery</li>
+        <li><strong>No jump circuits</strong> — save the legs for lifting days</li>
+        <li>Optional: light core, hip mobility, static stretching</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div id="phase5" class="tab">
+    <h2>Phase 5: Speed-Strength</h2>
+    <p class="subtitle">Weeks 21–24 &nbsp;·&nbsp; <span class="badge badge-phase5">Bar Velocity</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card"><div class="label">Stimulus</div><div class="value">Bar Velocity</div></div>
+      <div class="meta-card"><div class="label">Tempo</div><div class="value">Explosive — speed is metric</div></div>
+      <div class="meta-card"><div class="label">Frequency</div><div class="value">3 lift + 1 jump/week</div></div>
+      <div class="meta-card"><div class="label">Deload</div><div class="value">Week 24</div></div>
+    </div>
+
+    <div class="callout">
+      <strong>Convert strength to speed.</strong> Bars move fast and light — 50–70% of max. If the bar feels slow, the weight is too heavy. Speed is the metric, not load.
+    </div>
+
+    <h3>Sunday — Jump Session</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>20 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>20 min</td><td>12–15 full approach jumps at 100% intent, 90–120s rest between</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Lifting Days — Mon / Wed / Fri</h3>
+
+    <div class="section-block">
+      <h4>CNS Primers — Always First</h4>
+      <ul>
+        <li>Standing CMJ × 2 reps via My Jump Lab</li>
+        <li>Max intent every rep, 3 min full rest between</li>
+      </ul>
+      <div class="callout danger" style="margin-top:10px">
+        If either jump &gt;10% below recent best → <strong>cut all working sets by 50%</strong>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h4>Power Snatch</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">~50% of power clean max = ~55kg. Technique and bar speed are everything. Move it like it's 90%.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>21</td><td>5 × 3</td><td>55kg</td></tr>
+          <tr><td>22</td><td>5 × 3</td><td>55kg</td></tr>
+          <tr><td>23</td><td>6 × 3</td><td>57.5kg</td></tr>
+          <tr class="deload"><td>24</td><td>4 × 3</td><td>50kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Power Clean</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">60–70% of power clean max = ~66–77kg. Bar speed is the metric — if it's slower than Phase 1 speeds, reduce the load.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>21</td><td>5 × 3</td><td>66kg</td></tr>
+          <tr><td>22</td><td>5 × 3</td><td>72kg</td></tr>
+          <tr><td>23</td><td>6 × 3</td><td>77kg</td></tr>
+          <tr class="deload"><td>24</td><td>4 × 3</td><td>65kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Hang Power Clean</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">~65% of power clean max = ~70–75kg. Introduces the stretch-shortening cycle into the clean — emphasise the hip snap into the catch.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th></tr></thead>
+        <tbody>
+          <tr><td>21</td><td>3 × 3</td><td>70kg</td></tr>
+          <tr><td>22</td><td>4 × 3</td><td>72kg</td></tr>
+          <tr><td>23</td><td>4 × 3</td><td>75kg</td></tr>
+          <tr class="deload"><td>24</td><td>3 × 3</td><td>65kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Back Squat — Ascending Primer + High-Velocity Set</h4>
+      <div class="callout warning" style="margin-bottom:12px">
+        <strong>Do not max out the primer.</strong> It is a warm-up for the velocity set. Do not do both at high intensity — neural fry risk.
+      </div>
+      <p class="sub-label">Ascending Primer — all weeks</p>
+      <p style="font-size:0.85rem;margin-bottom:12px">Set 1: 5 reps @ ~65% (107kg) &nbsp;→&nbsp; Set 2: 4 reps @ ~75% (124kg) &nbsp;→&nbsp; Set 3: 3 reps @ ~85% (140kg)</p>
+      <p class="sub-label">High-Velocity Set</p>
+      <table>
+        <thead><tr><th>Week</th><th>Sets × Reps</th><th>Load</th><th>Target</th></tr></thead>
+        <tbody>
+          <tr><td>21</td><td>1 × 5</td><td>107kg (~65%)</td><td>Move as fast as possible</td></tr>
+          <tr><td>22</td><td>1 × 5</td><td>110kg (~67%)</td><td>Time the set — note progress</td></tr>
+          <tr><td>23</td><td>1 × 5</td><td>115kg (~70%)</td><td>Bar speed is the measure</td></tr>
+          <tr class="deload"><td>24</td><td>1 × 3</td><td>100kg</td><td>Comfortable, fast</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Plyometric Accessories — Phase 6 Primers</h4>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:10px">Volume-capped — Phase 6 is where these peak. Priming movement patterns only.</p>
+      <table>
+        <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Med ball throws</td><td>3 × 5 per variation</td><td>Overhead back, between-legs forward, overhead scoop</td></tr>
+          <tr><td>Step-off box (low)</td><td>3 × 5</td><td>Land and hold 2s — focus on landing mechanics</td></tr>
+          <tr><td>Step-up jumps</td><td>3 × 5 each leg</td><td>Step up, drive off one leg into a jump</td></tr>
+        </tbody>
+      </table>
+      <p style="color:var(--muted);font-size:0.82rem;margin-top:10px">Week 24 deload: reduce to 2 × 5 per exercise.</p>
+    </div>
+
+    <h3>General Days — Tue / Thu</h3>
+    <div class="section-block">
+      <ul>
+        <li>Static flexibility: hamstrings, hip flexors, calves (10–15 min)</li>
+        <li>Light bodyweight circuits or core only</li>
+        <li><strong>No jumping on general days</strong> — save reactive capacity for lifting days</li>
+        <li>Optional: barefoot 100m × 10, walk back (aerobic maintenance only — not tempo pace)</li>
+      </ul>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Warm-up every session:</strong> Copenhagen planks 3 × 20–30s each side — non-negotiable.
+    </div>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div id="phase6" class="tab">
+    <h2>Phase 6: Maximum Specificity</h2>
+    <p class="subtitle">Weeks 25–28 &nbsp;·&nbsp; <span class="badge badge-phase6">Peak Expression</span></p>
+
+    <div class="meta-grid">
+      <div class="meta-card"><div class="label">Stimulus</div><div class="value">Approach Jumps + Sprints</div></div>
+      <div class="meta-card"><div class="label">Lifting</div><div class="value">Maintenance only</div></div>
+      <div class="meta-card"><div class="label">Option</div><div class="value">A (fatigued) / B (fresh)</div></div>
+      <div class="meta-card"><div class="label">Next</div><div class="value">Taper after Week 28</div></div>
+    </div>
+
+    <div class="callout warning">
+      <strong>The weight room becomes maintenance.</strong> Jumping is the training stimulus. Be honest about fatigue — choose Option A or B based on how you're actually recovering, not how you want to feel.
+    </div>
+
+    <h3>Sunday — Jump Session (All Options)</h3>
+    <div class="section-block">
+      <h4>40-Minute Structure</h4>
+      <table>
+        <thead><tr><th>Block</th><th>Duration</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>20 min</td><td>Pogos, skips, bounds, submaximal CMJs (60–70%), approach run-throughs at 75–80%</td></tr>
+          <tr><td>CNS Check</td><td>—</td><td>2 measured CMJs — skip max effort if &gt;10% below recent best</td></tr>
+          <tr><td>Max Effort</td><td>20 min</td><td>12–15 full approach jumps at 100% intent, 90–120s rest between</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Option A — Load Management</h3>
+    <div class="section-block">
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px">Use if Phase 5 left accumulated fatigue. Jumping is the primary training stimulus.</p>
+      <table>
+        <thead><tr><th>Day</th><th>Session</th></tr></thead>
+        <tbody>
+          <tr><td>Sunday</td><td>Jump session (full 40-min structure)</td></tr>
+          <tr><td>Mon + Wed</td><td>"Feel good" lifts — slow tempo squats, slow calf raises, RDLs. No DOMS after.</td></tr>
+          <tr><td>Tue / Thu / Fri / Sat</td><td>Rest or very light activity (walks, stretching)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Option B — Integrated</h3>
+    <div class="section-block">
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px">Use if you've been recovering well and Phase 5 left no residual fatigue.</p>
+      <table>
+        <thead><tr><th>Day</th><th>Session</th></tr></thead>
+        <tbody>
+          <tr><td>Sunday</td><td>Jump session (full 40-min structure)</td></tr>
+          <tr><td>Mon / Wed / Fri</td><td>Sprints 4–6 × 30–40m @ 90–95% full rest &nbsp;+&nbsp; Depth jumps, approach jumps, reactive bounds (30–50 contacts max) &nbsp;+&nbsp; Slow accessories (RDLs, slow calf raises — 3 × 8)</td></tr>
+          <tr><td>Tue / Thu</td><td>Very easy — mobility, upper body only (bench, rows, pull-ups)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Taper — Post Week 28</h3>
+    <div class="section-block">
+      <h4>~1–2 Weeks — No New Stimulus</h4>
+      <div class="callout" style="margin-bottom:12px">
+        Cut volume ~50%. Increase relative intensity. Jump more frequently. No DOMS going into test day.
+      </div>
+      <table>
+        <thead><tr><th>Element</th><th>Protocol</th></tr></thead>
+        <tbody>
+          <tr><td>Squats</td><td>5 → 4 → 3 → 2 → 1 ascending. Stop when a rep slows — don't grind.</td></tr>
+          <tr><td>Power clean</td><td>Daily max for bar speed — not a PR grind</td></tr>
+          <tr><td>Jumping</td><td><strong>2× per week</strong> — the only time in the macrocycle frequency increases. Same 40-min structure.</td></tr>
+          <tr><td>General work</td><td>Maintain but keep volume low. Don't drop it entirely.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-block">
+      <h4>Test Day Protocol</h4>
+      <ul>
+        <li>Morning, fasted bodyweight</li>
+        <li>Full warm-up: pogos, approach run-throughs, build to 2–3 near-max jumps</li>
+        <li>3–5 max effort approach jumps — full rest between each</li>
+        <li>Record peak</li>
+      </ul>
     </div>
 
     <div class="callout" style="margin-top:20px">

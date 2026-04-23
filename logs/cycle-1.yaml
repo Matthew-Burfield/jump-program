@@ -12,6 +12,26 @@ cns_primers:
   week_6_best_cmj:
   week_7_best_cmj:
   week_8_best_cmj:
+  week_9_best_cmj:
+  week_10_best_cmj:
+  week_11_best_cmj:
+  week_12_best_cmj:
+  week_13_best_cmj:
+  week_14_best_cmj:
+  week_15_best_cmj:
+  week_16_best_cmj:
+  week_17_best_cmj:
+  week_18_best_cmj:
+  week_19_best_cmj:
+  week_20_best_cmj:
+  week_21_best_cmj:
+  week_22_best_cmj:
+  week_23_best_cmj:
+  week_24_best_cmj:
+  week_25_best_cmj:
+  week_26_best_cmj:
+  week_27_best_cmj:
+  week_28_best_cmj:
 
 # ── Phase 0: Tendon Armor (Weeks 1–4) ────────────────────────────────────────
 
@@ -392,7 +412,529 @@ phase_1:
       reps: 10
       notes:
 
-# ── End-of-Cycle Test Results (Week 8) ───────────────────────────────────────
+# ── Phase 2: Intensification (Weeks 9–12) ────────────────────────────────────
+
+phase_2:
+  jump_session:
+    - week: 9
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 10
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 11
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 12 # deload — warm-up only
+      notes:
+
+  power_clean: # Mon + Fri
+    - week: 9
+      load_kg: 82.5
+      sets: 5
+      reps: 4
+      notes:
+    - week: 10
+      load_kg: 87.5
+      sets: 6
+      reps: 3
+      notes:
+    - week: 11
+      load_kg: 92.5
+      sets: 7
+      reps: 3
+      notes:
+    - week: 12 # deload
+      load_kg: 80
+      sets: 4
+      reps: 3
+      notes:
+
+  clean_pull: # Wed
+    - week: 9
+      load_kg: 100
+      sets: 5
+      reps: 4
+      notes:
+    - week: 10
+      load_kg: 100
+      sets: 6
+      reps: 3
+      notes:
+    - week: 11
+      load_kg: 100
+      sets: 7
+      reps: 3
+      notes:
+    - week: 12 # deload
+      load_kg: 90
+      sets: 4
+      reps: 3
+      notes:
+
+  back_squat:
+    - week: 9
+      load_kg: 120
+      sets: 4
+      reps: 8
+      notes:
+    - week: 10
+      load_kg: 127.5
+      sets: 4
+      reps: 6
+      notes:
+    - week: 11
+      load_kg: 132.5
+      sets: 5
+      reps: 6
+      notes:
+    - week: 12 # deload
+      load_kg: 115
+      sets: 3
+      reps: 6
+      notes:
+
+  wall_sit:
+    - week: 9
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 10
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 11
+      sets: 2
+      duration_s: 45
+      notes:
+    - week: 12 # deload
+      sets: 1
+      duration_s: 45
+      notes:
+
+  trap_bar_rdl:
+    - week: 9
+      load_kg:
+      sets: 3
+      reps: 6
+      rpe: 8
+      notes:
+    - week: 10
+      load_kg:
+      sets: 3
+      reps: 5
+      rpe: 8-9
+      notes:
+    - week: 11
+      load_kg:
+      sets: 4
+      reps: 5
+      rpe: 9
+      notes:
+    - week: 12 # deload
+      load_kg:
+      sets: 2
+      reps: 5
+      rpe: 7
+      notes:
+
+  nordic_hamstring_curl:
+    - week: 9
+      load_kg:
+      sets: 3
+      reps: 6
+      notes: light added load
+    - week: 10
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 11
+      load_kg:
+      sets: 3
+      reps: 5
+      notes: RPE 9
+    - week: 12 # deload
+      load_kg:
+      sets: 2
+      reps: 5
+      notes:
+
+  tibialis_raise:
+    - week: 9
+      sets: 3
+      reps: 20
+      notes:
+    - week: 10
+      sets: 3
+      reps: 20
+      notes:
+    - week: 11
+      sets: 3
+      reps: 20
+      notes:
+    - week: 12 # deload
+      sets: 2
+      reps: 15
+      notes:
+
+  single_leg_calf_raise:
+    - week: 9
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 10
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 11
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 12 # deload
+      load_kg:
+      sets: 2
+      reps: 6
+      notes:
+
+# ── Phase 3: Absolute Strength (Weeks 13–16) ─────────────────────────────────
+
+phase_3:
+  jump_session:
+    - week: 13
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 14
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 15
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 16 # deload — warm-up only
+      notes:
+
+  clean_pull:
+    - week: 13
+      load_kg: 115
+      sets: 6
+      reps: 3
+      notes:
+    - week: 14
+      load_kg: 117.5
+      sets: 7
+      reps: 3
+      notes:
+    - week: 15
+      load_kg: 120
+      sets: 8
+      reps: 3
+      notes:
+    - week: 16 # deload
+      load_kg: 105
+      sets: 4
+      reps: 3
+      notes:
+
+  back_squat:
+    - week: 13
+      load_kg: 137.5
+      sets: 8
+      reps: 3
+      notes:
+    - week: 14
+      load_kg: 142.5
+      sets: 10
+      reps: 3
+      notes:
+    - week: 15
+      load_kg: 150
+      sets: 10
+      reps: 2
+      notes:
+    - week: 16 # deload
+      load_kg: 130
+      sets: 5
+      reps: 2
+      notes:
+
+  nordic_hamstring_curl:
+    - week: 13
+      load_kg:
+      sets: 3
+      reps: 5
+      notes: RPE 9
+    - week: 14
+      load_kg:
+      sets: 3
+      reps: 5
+      notes:
+    - week: 15
+      load_kg:
+      sets: 3
+      reps: 5
+      notes: RPE 9
+    - week: 16 # deload
+      load_kg:
+      sets: 2
+      reps: 5
+      notes: RPE 7
+
+  calf_raise_2up1down:
+    - week: 13
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 14
+      load_kg:
+      sets: 3
+      reps: 6
+      notes:
+    - week: 15
+      load_kg:
+      sets: 3
+      reps: 6
+      notes: RPE 8-9
+    - week: 16 # deload
+      load_kg:
+      sets: 2
+      reps: 6
+      notes:
+
+# ── Phase 4: Strength-Speed / Eccentric Emphasis (Weeks 17–20) ───────────────
+
+phase_4:
+  jump_session:
+    - week: 17
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 18
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 19
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 20 # deload — warm-up only
+      notes:
+
+  power_clean_daily_max: # Mon + Fri — record top single each session
+    - week: 17
+      top_single_kg:
+      notes:
+    - week: 18
+      top_single_kg:
+      notes:
+    - week: 19
+      top_single_kg:
+      notes:
+    - week: 20 # deload — no daily max
+      top_set_kg:
+      notes:
+
+  clean_pull: # Wed
+    - week: 17
+      load_kg: 116
+      sets: 4
+      reps: 3
+      notes:
+    - week: 18
+      load_kg: 118
+      sets: 5
+      reps: 3
+      notes:
+    - week: 19
+      load_kg: 121
+      sets: 5
+      reps: 3
+      notes:
+    - week: 20 # deload
+      load_kg: 105
+      sets: 3
+      reps: 3
+      notes:
+
+  rack_eccentric:
+    - week: 17
+      load_kg: 182.5
+      sets: 4
+      reps: 3
+      notes:
+    - week: 18
+      load_kg: 185
+      sets: 4
+      reps: 3
+      notes:
+    - week: 19
+      load_kg: 187.5
+      sets: 5
+      reps: 3
+      notes:
+    - week: 20 # deload
+      load_kg: 175
+      sets: 3
+      reps: 3
+      notes:
+
+  full_rom_deadlift:
+    - week: 17
+      load_kg:
+      sets: 3
+      reps: 4
+      rpe: 7-8
+      notes:
+    - week: 18
+      load_kg:
+      sets: 3
+      reps: 3
+      rpe: 8
+      notes:
+    - week: 19
+      load_kg:
+      sets: 3
+      reps: 3
+      rpe: 8-9
+      notes:
+    - week: 20 # deload
+      load_kg:
+      sets: 2
+      reps: 4
+      rpe: 6
+      notes:
+
+# ── Phase 5: Speed-Strength / Bar Velocity (Weeks 21–24) ─────────────────────
+
+phase_5:
+  jump_session:
+    - week: 21
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 22
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 23
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 24 # deload — warm-up only
+      notes:
+
+  power_snatch:
+    - week: 21
+      load_kg: 55
+      sets: 5
+      reps: 3
+      notes:
+    - week: 22
+      load_kg: 55
+      sets: 5
+      reps: 3
+      notes:
+    - week: 23
+      load_kg: 57.5
+      sets: 6
+      reps: 3
+      notes:
+    - week: 24 # deload
+      load_kg: 50
+      sets: 4
+      reps: 3
+      notes:
+
+  power_clean:
+    - week: 21
+      load_kg: 66
+      sets: 5
+      reps: 3
+      notes:
+    - week: 22
+      load_kg: 72
+      sets: 5
+      reps: 3
+      notes:
+    - week: 23
+      load_kg: 77
+      sets: 6
+      reps: 3
+      notes:
+    - week: 24 # deload
+      load_kg: 65
+      sets: 4
+      reps: 3
+      notes:
+
+  hang_power_clean:
+    - week: 21
+      load_kg: 70
+      sets: 3
+      reps: 3
+      notes:
+    - week: 22
+      load_kg: 72
+      sets: 4
+      reps: 3
+      notes:
+    - week: 23
+      load_kg: 75
+      sets: 4
+      reps: 3
+      notes:
+    - week: 24 # deload
+      load_kg: 65
+      sets: 3
+      reps: 3
+      notes:
+
+  back_squat_velocity_set: # record the HV set load only
+    - week: 21
+      load_kg: 107
+      notes:
+    - week: 22
+      load_kg: 110
+      notes:
+    - week: 23
+      load_kg: 115
+      notes:
+    - week: 24 # deload
+      load_kg: 100
+      notes:
+
+# ── Phase 6: Maximum Specificity (Weeks 25–28) ───────────────────────────────
+
+phase_6:
+  option: # A or B
+  jump_session:
+    - week: 25
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 26
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 27
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+    - week: 28 # taper transition
+      approach_jumps_attempted:
+      top_jump_inches:
+      notes:
+
+# ── End-of-Cycle Test Results ─────────────────────────────────────────────────
 
 test_results:
   bodyweight_kg:
@@ -400,5 +942,5 @@ test_results:
   approach_backboard_inches:
   back_squat_5rm_kg:
   back_squat_est_1rm_kg:
-  power_clean_top_set:
+  power_clean_top_set_kg:
   notes:
