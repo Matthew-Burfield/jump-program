@@ -372,6 +372,33 @@
     }
 
     /* ── Desktop scaling ── */
+    /* ── Dashboard ── */
+    .pos-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .pos-card.pos-done { border-color: rgba(34, 197, 94, 0.25); }
+    .pos-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+    .pos-cycle { font-size: 1rem; font-weight: 700; color: #fff; }
+    .pos-phase { font-size: 0.88rem; color: var(--accent); font-weight: 600; }
+    .pos-week  { font-size: 0.82rem; color: var(--muted); margin-left: auto; }
+    .prog-track { height: 5px; background: var(--surface2); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+    .prog-fill  { height: 100%; background: var(--accent); border-radius: 99px; }
+    .prog-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); }
+
+    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+    .metric-lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 5px; }
+    .metric-val { font-size: 1.3rem; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
+    .metric-val.empty { color: var(--muted); }
+    .metric-src { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-src.from-cycle { color: var(--success); }
+    .metric-src.from-base  { color: var(--muted); }
+
     @media (min-width: 640px) {
       header { padding: 18px 24px 0; }
       nav { margin: 0 -24px; padding: 0 24px; }
@@ -381,6 +408,7 @@
       .goals-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
       .section-block { padding: 20px; }
       .section-block .table-wrap { margin: 10px -20px; padding: 0 20px; }
+      .dash-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
     }
   </style>
 </head>
@@ -389,7 +417,8 @@
 <header>
   <h1>Jump <span>Program</span></h1>
   <nav>
-    <button class="active" onclick="showTab('phase0', this)">Phase 0</button>
+    <button class="active" onclick="showTab('dashboard', this)">Dashboard</button>
+    <button onclick="showTab('phase0', this)">Phase 0</button>
     <button onclick="showTab('phase1', this)">Phase 1</button>
     <button onclick="showTab('upper', this)">Upper Body</button>
     <button onclick="showTab('goals', this)">Goals</button>
@@ -399,8 +428,20 @@
 
 <main>
 
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="tab active">
+    <h2>Dashboard</h2>
+    <div id="dash-position"></div>
+    <h3>Key Metrics</h3>
+    <div id="dash-metrics" class="dash-grid"></div>
+    <h3>Physical Profile</h3>
+    <div id="dash-profile"></div>
+    <h3>Week 16 Goals</h3>
+    <div id="dash-goals"></div>
+  </div>
+
   <!-- PHASE 0 -->
-  <div id="phase0" class="tab active">
+  <div id="phase0" class="tab">
     <h2>Phase 0: Tendon Armor</h2>
     <p class="subtitle">Weeks 1–4 &nbsp;·&nbsp; <span class="badge badge-phase0">Structural Integrity</span></p>
 
@@ -896,30 +937,178 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  const LOG_URL = 'https://raw.githubusercontent.com/Matthew-Burfield/jump-program/main/logs/cycle-1.yaml';
+  const PROFILE_URL    = 'https://raw.githubusercontent.com/Matthew-Burfield/jump-program/main/profile.yaml';
+  const CYCLE_LOG_URLS = [
+    'https://raw.githubusercontent.com/Matthew-Burfield/jump-program/main/logs/cycle-1.yaml',
+    // add cycle-2.yaml, cycle-3.yaml here as you progress
+  ];
 
-  async function loadLog() {
+  async function fetchYaml(url) {
     try {
-      const res = await fetch(LOG_URL);
-      if (!res.ok) return;
-      const data = jsyaml.load(await res.text());
-      if (data.phase_0) {
-        renderSummary(data);
-        renderActuals(data.phase_0);
-      }
-    } catch (e) {
-      console.warn('Could not load cycle log:', e);
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      return jsyaml.load(await res.text());
+    } catch { return null; }
+  }
+
+  async function init() {
+    const [profile, ...cycleLogs] = await Promise.all([
+      fetchYaml(PROFILE_URL),
+      ...CYCLE_LOG_URLS.map(fetchYaml),
+    ]);
+    const cycles = cycleLogs.filter(Boolean);
+    renderDashboard(profile, cycles);
+    const latest = cycles[cycles.length - 1];
+    if (latest) {
+      renderSummary(latest);
+      if (latest.phase_0) renderActuals(latest.phase_0);
     }
   }
 
+  // ── Dashboard ───────────────────────────────────────────────────────────────
+
+  function renderDashboard(profile, cycles) {
+    renderPosition(cycles);
+    renderMetrics(profile, cycles);
+    renderPhysicalProfile(profile);
+    renderGoals(profile, cycles);
+  }
+
+  function renderPosition(cycles) {
+    const el = document.getElementById('dash-position');
+    if (!cycles.length) return;
+
+    const today = Date.now();
+    const CYCLE_WEEKS = 8;
+    const WEEK_MS = 7 * 24 * 3600 * 1000;
+
+    let activeCycle = null;
+    for (let i = cycles.length - 1; i >= 0; i--) {
+      const start = new Date(cycles[i].started).getTime();
+      if (today >= start && today <= start + CYCLE_WEEKS * WEEK_MS) {
+        activeCycle = cycles[i];
+        break;
+      }
+    }
+    const displayCycle = activeCycle || cycles[cycles.length - 1];
+
+    if (activeCycle) {
+      const days = Math.floor((today - new Date(activeCycle.started).getTime()) / 86400000);
+      const week = Math.min(Math.floor(days / 7) + 1, CYCLE_WEEKS);
+      const phaseName  = week <= 4 ? 'Phase 0' : week <= 8 ? 'Phase 1' : 'Phase 2';
+      const phaseLabel = week <= 4 ? 'Tendon Armor' : week <= 8 ? 'Volume Building' : 'Intensification';
+      const pct = Math.round((week / CYCLE_WEEKS) * 100);
+      el.innerHTML = `
+        <div class="pos-card">
+          <div class="pos-row">
+            <span class="pos-cycle">Cycle ${activeCycle.cycle}</span>
+            <span class="pos-phase">${phaseName} &nbsp;·&nbsp; ${phaseLabel}</span>
+            <span class="pos-week">Week ${week} of ${CYCLE_WEEKS}</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+          <div class="prog-labels">
+            <span>Started ${activeCycle.started}</span>
+            <span>${pct}% complete</span>
+          </div>
+        </div>`;
+    } else {
+      el.innerHTML = `
+        <div class="pos-card pos-done">
+          <div class="pos-row">
+            <span class="pos-cycle">Cycle ${displayCycle.cycle}</span>
+            <span class="complete-badge">Complete</span>
+            <span class="pos-week">${displayCycle.started} → ${displayCycle.ended || '—'}</span>
+          </div>
+          <p style="margin:0;font-size:0.85rem;color:var(--muted)">No active cycle — add the next cycle log to continue tracking.</p>
+        </div>`;
+    }
+  }
+
+  function getLatest(cycles, key) {
+    for (let i = cycles.length - 1; i >= 0; i--) {
+      const r = cycles[i].test_results;
+      if (r && r[key] != null) return { val: r[key], cycle: cycles[i].cycle };
+    }
+    return null;
+  }
+
+  function renderMetrics(profile, cycles) {
+    const b = profile?.baseline || {};
+    const METRICS = [
+      { lbl: 'CMJ (backboard)',       key: 'cmj_backboard_inches',     unit: '"',  base: b.cmj_backboard_inches     },
+      { lbl: 'Approach (backboard)',  key: 'approach_backboard_inches', unit: '"',  base: b.approach_backboard_inches },
+      { lbl: 'Back Squat est. 1RM',   key: 'back_squat_est_1rm_kg',    unit: 'kg', base: b.back_squat_est_1rm_kg    },
+      { lbl: 'Power Clean',           key: 'power_clean_top_set_kg',   unit: 'kg', base: b.power_clean_top_set_kg   },
+      { lbl: 'Bodyweight',            key: 'bodyweight_kg',            unit: 'kg', base: b.bodyweight_kg            },
+    ];
+    document.getElementById('dash-metrics').innerHTML = METRICS.map(m => {
+      const latest = getLatest(cycles, m.key);
+      const val = latest?.val ?? m.base ?? null;
+      const src = latest ? `Cycle ${latest.cycle}` : (m.base != null ? 'Baseline' : null);
+      return `<div class="metric-card">
+        <div class="metric-lbl">${m.lbl}</div>
+        <div class="metric-val${val == null ? ' empty' : ''}">${val != null ? val + m.unit : '—'}</div>
+        ${src ? `<div class="metric-src ${latest ? 'from-cycle' : 'from-base'}">${src}</div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function renderPhysicalProfile(profile) {
+    if (!profile) return;
+    const el = document.getElementById('dash-profile');
+    const fields = [
+      { label: 'Height',         value: profile.height_cm             ? `${profile.height_cm}cm`            : null },
+      { label: 'Standing Reach', value: profile.standing_reach_inches  ? `${profile.standing_reach_inches}"` : null },
+      { label: 'Wingspan',       value: profile.wingspan_cm            ? `${profile.wingspan_cm}cm`           : null },
+      { label: 'Preferred Foot', value: profile.preferred_foot         || null                                       },
+    ].filter(f => f.value);
+    if (!fields.length) return;
+    el.className = 'meta-grid';
+    el.innerHTML = fields.map(f => `
+      <div class="meta-card">
+        <div class="label">${f.label}</div>
+        <div class="value">${f.value}</div>
+      </div>`).join('');
+  }
+
+  function renderGoals(profile, cycles) {
+    const b = profile?.baseline   || {};
+    const g = profile?.goals?.week_16 || {};
+    const cmjBase    = b.cmj_backboard_inches;
+    const cmjCurrent = getLatest(cycles, 'cmj_backboard_inches')?.val ?? cmjBase;
+    const cmjTarget  = cmjBase != null && g.cmj_improvement_inches != null
+      ? cmjBase + g.cmj_improvement_inches : null;
+    const sqTarget  = g.back_squat_5rm_kg;
+    const sqCurrent = getLatest(cycles, 'back_squat_est_1rm_kg')?.val ?? b.back_squat_est_1rm_kg;
+
+    document.getElementById('dash-goals').innerHTML = `
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-label">CMJ Vertical</div>
+          <div class="goal-value">${cmjTarget != null ? cmjTarget + '"' : '26"'}</div>
+          <div class="goal-desc">Currently ${cmjCurrent != null ? cmjCurrent + '"' : '—'} · +${g.cmj_improvement_inches ?? 2}" target</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-label">Back Squat 5RM</div>
+          <div class="goal-value">${sqTarget != null ? sqTarget + 'kg' : '150kg'}</div>
+          <div class="goal-desc">Est. 1RM now ${sqCurrent != null ? sqCurrent + 'kg' : '—'} · 1.5× bodyweight</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-label">Tendon Health</div>
+          <div class="goal-value">Zero sharp pain</div>
+          <div class="goal-desc">No sharp patellar pain during pogo jumps</div>
+        </div>
+      </div>`;
+  }
+
+  // ── Phase actuals (existing) ─────────────────────────────────────────────────
+
   function renderSummary(data) {
     const p0 = data.phase_0;
-    if (!data.ended) return; // only show summary when phase is complete
-
+    if (!data.ended) return;
     const squatPeak = Math.max(...p0.back_squat.filter(w => w.load_kg).map(w => w.load_kg));
     const bssPeak   = Math.max(...p0.bulgarian_split_squat.filter(w => w.load_kg).map(w => w.load_kg));
     const calfPeak  = Math.max(...p0.single_leg_seating_calf_raise.filter(w => w.load_kg).map(w => w.load_kg));
-
     document.getElementById('phase0-summary').innerHTML = `
       <div class="phase-summary">
         <div class="phase-summary-header">
@@ -928,21 +1117,11 @@
           <span class="dates">${data.started} → ${data.ended}</span>
         </div>
         <div class="summary-stats">
-          <div class="summary-stat">
-            <div class="s-label">Peak Back Squat</div>
-            <div class="s-value">${squatPeak}kg</div>
-          </div>
-          <div class="summary-stat">
-            <div class="s-label">Peak BSS</div>
-            <div class="s-value">${bssPeak}kg</div>
-          </div>
-          <div class="summary-stat">
-            <div class="s-label">Peak Calf Raise</div>
-            <div class="s-value">${calfPeak}kg</div>
-          </div>
+          <div class="summary-stat"><div class="s-label">Peak Back Squat</div><div class="s-value">${squatPeak}kg</div></div>
+          <div class="summary-stat"><div class="s-label">Peak BSS</div><div class="s-value">${bssPeak}kg</div></div>
+          <div class="summary-stat"><div class="s-label">Peak Calf Raise</div><div class="s-value">${calfPeak}kg</div></div>
         </div>
-      </div>
-    `;
+      </div>`;
   }
 
   function formatActual(key, entry) {
@@ -969,37 +1148,26 @@
   }
 
   function renderActuals(p0) {
-    // Handle section-blocks with data-log-key (one table per block)
     document.querySelectorAll('[data-log-key]').forEach(el => {
       const key = el.dataset.logKey;
       const entries = p0[key];
       if (!entries) return;
-
       const table = el.tagName === 'TABLE' ? el : el.querySelector('table');
       if (!table) return;
-
-      // Add "Actual" header
       const th = document.createElement('th');
       th.textContent = 'Actual';
       table.querySelector('thead tr').appendChild(th);
-
-      // Add actual data per row
       table.querySelectorAll('tbody tr').forEach((row, i) => {
         const td = document.createElement('td');
         const val = formatActual(key, entries[i]);
-        if (val) {
-          td.textContent = val;
-          td.className = 'actual';
-        } else {
-          td.textContent = '—';
-          td.className = 'actual-empty';
-        }
+        if (val) { td.textContent = val; td.className = 'actual'; }
+        else      { td.textContent = '—'; td.className = 'actual-empty'; }
         row.appendChild(td);
       });
     });
   }
 
-  loadLog();
+  init();
 </script>
 
 </body>

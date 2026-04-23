@@ -166,7 +166,7 @@ phase_0:
       weight_kg: 10
       notes:
 
-  single_leg_seating_calf_raise:
+  single_leg_seated_calf_raise:
     - week: 1
       load_kg: 70
       sets: 3

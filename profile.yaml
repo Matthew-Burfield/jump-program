@@ -1,0 +1,24 @@
+# Physical attributes — update as measured
+height_cm: 185
+standing_reach_inches: 98
+wingspan_cm: 190
+preferred_foot: right
+
+# Pre-program baseline (before Cycle 1)
+baseline:
+  date: 2026-03-25
+  bodyweight_kg: 99.5
+  cmj_backboard_inches: 24
+  approach_backboard_inches: 26.5
+  back_squat_est_1rm_kg: 165
+  power_clean_top_set_kg: 110
+
+# Program targets
+goals:
+  week_16:
+    cmj_improvement_inches: 2        # +2" standing vertical over baseline
+    back_squat_5rm_kg: 150           # 1.5× bodyweight
+  week_48:
+    approach_backboard_inches: 35
+    back_squat_1rm_kg: 200
+    power_clean_kg: 140
