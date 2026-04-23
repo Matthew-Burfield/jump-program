@@ -971,6 +971,15 @@
     return String(d).slice(0, 10);
   }
 
+  function cmToFtIn(cm) {
+    const totalIn = cm / 2.54;
+    return `${Math.floor(totalIn / 12)}'${Math.round(totalIn % 12)}"`;
+  }
+
+  function cmToIn(cm) {
+    return `${(cm / 2.54).toFixed(1)}"`;
+  }
+
   async function fetchYaml(url) {
     try {
       const res = await fetch(url);
@@ -1104,8 +1113,8 @@
     if (!profile) return;
     const el = document.getElementById('dash-profile');
     const fields = [
-      { label: 'Height',         value: profile.height_cm             ? `${profile.height_cm}cm`            : null },
-      { label: 'Standing Reach', value: profile.standing_reach_cm ? `${profile.standing_reach_cm}cm` : null },
+      { label: 'Height',         value: profile.height_cm        ? `${profile.height_cm}cm / ${cmToFtIn(profile.height_cm)}`           : null },
+      { label: 'Standing Reach', value: profile.standing_reach_cm ? `${profile.standing_reach_cm}cm / ${cmToIn(profile.standing_reach_cm)}` : null },
       { label: 'Wingspan',       value: profile.wingspan_cm            ? `${profile.wingspan_cm}cm`           : null },
       { label: 'Preferred Foot', value: profile.preferred_foot         || null                                       },
     ].filter(f => f.value);
