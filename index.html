@@ -427,6 +427,17 @@
       .section-block .table-wrap { margin: 10px -20px; padding: 0 20px; }
       .dash-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
     }
+
+    .vert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+    .vert-info { flex-shrink: 0; }
+    .vert-primary { font-size: 1.6rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+    .vert-secondary { font-size: 0.95rem; color: var(--muted); margin-top: 2px; }
+    .vert-delta { font-size: 0.75rem; margin-top: 6px; font-weight: 600; }
+    .vert-delta.up   { color: var(--success); }
+    .vert-delta.down { color: #f87171; }
+    .vert-delta.flat { color: var(--muted); }
+    .sparkline-wrap { flex: 1; min-width: 0; height: 56px; }
+    .sparkline-wrap svg { width: 100%; height: 100%; display: block; }
   </style>
 </head>
 <body>
@@ -454,6 +465,8 @@
   <div id="dashboard" class="tab active">
     <h2>Dashboard</h2>
     <div id="dash-position"></div>
+    <h3>Vertical Jump</h3>
+    <div id="dash-vertical"></div>
     <h3>Key Metrics</h3>
     <div id="dash-metrics" class="dash-grid"></div>
     <h3>Physical Profile</h3>
@@ -1649,9 +1662,90 @@
 
   function renderDashboard(profile, cycles) {
     renderPosition(cycles, profile);
+    renderVertical(profile, cycles);
     renderMetrics(profile, cycles);
     renderPhysicalProfile(profile);
     renderGoals(profile, cycles);
+  }
+
+  function getJumpHistory(cycles, standingReachCm) {
+    const reachIn = standingReachCm / 2.54;
+    const history = [];
+    for (const cycle of cycles) {
+      for (const phase of ['phase_1','phase_2','phase_3','phase_4','phase_5','phase_6']) {
+        const sessions = cycle[phase]?.jump_session;
+        if (!sessions) continue;
+        for (const s of sessions) {
+          if (s.top_jump_inches == null) continue;
+          const vertIn = s.top_jump_inches - reachIn;
+          history.push({
+            week: s.week,
+            phase,
+            vertIn: Math.round(vertIn * 10) / 10,
+            vertCm: Math.round(vertIn * 2.54 * 10) / 10,
+          });
+        }
+      }
+    }
+    return history;
+  }
+
+  function buildSparkline(history) {
+    const W = 300, H = 56, PAD = 6;
+    const vals = history.map(h => h.vertIn);
+    const lo = Math.min(...vals) - 1;
+    const hi = Math.max(...vals) + 1;
+    const xOf = i => PAD + (history.length < 2 ? (W - 2 * PAD) / 2 : (i / (history.length - 1)) * (W - 2 * PAD));
+    const yOf = v => PAD + (1 - (v - lo) / (hi - lo)) * (H - 2 * PAD);
+    const pts = history.map((h, i) => `${xOf(i)},${yOf(h.vertIn)}`).join(' ');
+    const area = `${xOf(0)},${H} ${pts} ${xOf(history.length - 1)},${H}`;
+    const dots = history.map((h, i) =>
+      `<circle cx="${xOf(i)}" cy="${yOf(h.vertIn)}" r="3.5" fill="var(--accent)"/>`
+    ).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+      <defs><linearGradient id="vg" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+      </linearGradient></defs>
+      <polygon points="${area}" fill="url(#vg)"/>
+      ${history.length > 1 ? `<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>` : ''}
+      ${dots}
+    </svg>`;
+  }
+
+  function renderVertical(profile, cycles) {
+    const el = document.getElementById('dash-vertical');
+    if (!el) return;
+    const reach = profile?.standing_reach_cm;
+    if (!reach) { el.innerHTML = ''; return; }
+
+    const history = getJumpHistory(cycles, reach);
+    if (!history.length) {
+      el.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px">No jump sessions recorded yet.</p>';
+      return;
+    }
+
+    const latest = history[history.length - 1];
+    const prev   = history.length > 1 ? history[history.length - 2] : null;
+    const deltaIn = prev ? Math.round((latest.vertIn - prev.vertIn) * 10) / 10 : null;
+    const deltaCm = prev ? Math.round((latest.vertCm - prev.vertCm) * 10) / 10 : null;
+
+    let deltaHtml = '';
+    if (deltaIn != null) {
+      const cls  = deltaIn > 0 ? 'up' : deltaIn < 0 ? 'down' : 'flat';
+      const sign = deltaIn > 0 ? '+' : '';
+      deltaHtml = `<div class="vert-delta ${cls}">${sign}${deltaCm}cm &nbsp;/&nbsp; ${sign}${deltaIn}" vs prev session</div>`;
+    }
+
+    el.innerHTML = `<div class="vert-card">
+      <div class="vert-info">
+        <div class="metric-lbl">Approach Vertical</div>
+        <div class="vert-primary">${latest.vertCm}<span style="font-size:1rem;font-weight:400;color:var(--muted)">cm</span></div>
+        <div class="vert-secondary">${latest.vertIn}"</div>
+        ${deltaHtml}
+      </div>
+      <div class="sparkline-wrap">${buildSparkline(history)}</div>
+    </div>`;
   }
 
   function renderPosition(cycles, profile) {

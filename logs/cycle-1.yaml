@@ -215,8 +215,8 @@ phase_1:
   jump_session:
     - week: 5
       approach_jumps_attempted:
-      top_jump_inches:
-      notes:
+      top_jump_inches: 121.5  # 309cm
+      notes: 2026-04-26
     - week: 6
       approach_jumps_attempted:
       top_jump_inches:
