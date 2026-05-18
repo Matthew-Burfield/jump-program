@@ -674,7 +674,6 @@
       <div class="callout warning" style="margin-top:12px">
         Don't chase PRs. Practising max intent after a long warm-up. The ratio is deliberately conservative — tendons are fresh out of Phase 0.
       </div>
-      <div id="phase1-jump-results"></div>
     </div>
 
     <h3>Lifting Days — Mon / Wed / Fri</h3>
@@ -1657,7 +1656,6 @@
       renderSummary(latest);
       if (latest.phase_0) renderActuals(latest.phase_0);
     }
-    renderPhase1JumpResults(cycles, profile);
   }
 
   // ── Dashboard ───────────────────────────────────────────────────────────────
@@ -1897,44 +1895,6 @@
   }
 
   // ── Phase actuals (existing) ─────────────────────────────────────────────────
-
-  function renderPhase1JumpResults(cycles, profile) {
-    const el = document.getElementById('phase1-jump-results');
-    if (!el) return;
-    const reachIn = (profile?.standing_reach_cm || 0) / 2.54;
-
-    const sessions = [];
-    for (const cycle of cycles) {
-      (cycle.phase_1?.jump_session || []).forEach(s => sessions.push(s));
-    }
-    if (!sessions.some(s => s.approach_jumps_attempted != null || s.top_jump_inches != null || s.notes)) return;
-
-    const rows = sessions.map(s => {
-      const isDeload = s.week === 8;
-      const hasJump  = s.top_jump_inches != null;
-      const vertIn   = hasJump ? Math.round((s.top_jump_inches - reachIn) * 10) / 10 : null;
-      const vertCm   = hasJump ? Math.round(vertIn * 2.54 * 10) / 10 : null;
-      const jumpTd   = isDeload
-        ? `<td style="color:var(--muted)">Warm-up only</td>`
-        : hasJump
-          ? `<td><strong>${s.top_jump_inches}"</strong> <span style="color:var(--muted);font-size:0.8em">+${vertIn}" / +${vertCm}cm above reach</span></td>`
-          : `<td style="color:var(--muted)">—</td>`;
-      const notes = s.notes ? `<td style="color:var(--muted);font-size:0.8em">${s.notes}</td>` : '<td></td>';
-      return `<tr${isDeload ? ' class="deload"' : ''}>
-        <td>${s.week}</td>
-        <td>${isDeload ? '—' : (s.approach_jumps_attempted ?? '—')}</td>
-        ${jumpTd}${notes}
-      </tr>`;
-    }).join('');
-
-    el.innerHTML = `<div style="margin-top:16px">
-      <h4 style="font-weight:600;margin-bottom:8px;font-size:0.9rem;color:var(--text)">Session Results</h4>
-      <table>
-        <thead><tr><th>Week</th><th>Attempts</th><th>Top Jump</th><th>Notes</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-  }
 
   function renderSummary(data) {
     const p0 = data.phase_0;
