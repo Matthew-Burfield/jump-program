@@ -214,19 +214,19 @@ phase_1:
   # Jump session (Sunday)
   jump_session:
     - week: 5
-      approach_jumps_attempted:
+      approach_jumps_attempted: 5
       top_jump_inches: 121.5  # 309cm
       notes: "2026-04-26. Driveway, damp surface. Phase 1 baseline."
     - week: 6
-      approach_jumps_attempted:
+      approach_jumps_attempted: 5
       top_jump_inches:
-      notes:
+      notes: "Peak jump not recorded."
     - week: 7
-      approach_jumps_attempted:
-      top_jump_inches:
+      approach_jumps_attempted: 5
+      top_jump_inches: 122  # 10'2" touched; nearly cleared 10'4" (124")
       notes:
     - week: 8 # deload — warm-up only
-      notes:
+      notes: "Warm-up only. No max effort block."
 
   trap_bar_jump_squat:
     - week: 5
@@ -296,25 +296,25 @@ phase_1:
 
   sumo_deadlift:
     - week: 5
-      load_kg:
+      load_kg: 100
       sets: 3
       reps: 10
       rpe:
       notes:
     - week: 6
-      load_kg:
+      load_kg: 120
       sets: 3
       reps: 8
       rpe:
       notes:
     - week: 7
-      load_kg:
+      load_kg: 120
       sets: 4
       reps: 8
       rpe:
       notes:
     - week: 8 # deload
-      load_kg:
+      load_kg: 90
       sets: 2
       reps: 8
       rpe:
@@ -322,94 +322,102 @@ phase_1:
 
   leg_press_or_hack_squat:
     - week: 5
-      load_kg:
+      load_kg: 60
       sets: 3
       reps: 12
-      rpe:
-      notes:
+      rpe: 7
+      notes: "Landmine hack squat"
     - week: 6
-      load_kg:
+      load_kg: 70
       sets: 3
       reps: 12
-      rpe:
+      rpe: 7
       notes:
     - week: 7
-      load_kg:
+      load_kg: 80
       sets: 3
       reps: 10
-      rpe:
+      rpe: 8
       notes:
     - week: 8 # deload
-      load_kg:
+      load_kg: 60
       sets: 2
       reps: 10
-      rpe:
+      rpe: 6
       notes:
 
   nordic_hamstring_curl:
     - week: 5
-      band_assist:
+      band_assist: true
+      bands: "purple and black"
       sets: 3
       reps: 12
-      rpe:
+      rpe: 7
       notes:
     - week: 6
-      band_assist:
+      band_assist: true
+      bands: "purple and red"
       sets: 3
       reps: 12
-      rpe:
+      rpe: 7
       notes:
     - week: 7
-      band_assist:
+      band_assist: true
+      bands: "purple and yellow"
       sets: 3
       reps: 12
-      rpe:
+      rpe: 9
       notes:
     - week: 8 # deload
-      band_assist:
-      sets: 2
+      band_assist: true
+      bands: "purple"
+      sets: 1
       reps: 12
-      rpe:
+      rpe: 9
       notes:
 
   tibialis_raise:
     - week: 5
       sets: 3
       reps: 20
+      weight_kg: 12.5
       notes:
     - week: 6
       sets: 3
       reps: 20
+      weight_kg: 12.5
       notes:
     - week: 7
       sets: 3
       reps: 20
+      weight_kg: 12.5
       notes:
     - week: 8 # deload
       sets: 2
       reps: 15
+      weight_kg: 12.5
       notes:
 
   single_leg_calf_raise:
     - week: 5
-      load_kg:
+      load_kg: 20
       sets: 3
-      reps: 10
+      reps: 20
       notes:
     - week: 6
-      load_kg:
+      load_kg: 20
       sets: 3
-      reps: 12
+      reps: 20
       notes:
     - week: 7
-      load_kg:
+      load_kg: 20
       sets: 3
-      reps: 12
+      reps: 20
       notes:
     - week: 8 # deload
-      load_kg:
+      load_kg: 20
       sets: 2
-      reps: 10
+      reps: 20
       notes:
 
 # ── Phase 2: Intensification (Weeks 9–12) ────────────────────────────────────
