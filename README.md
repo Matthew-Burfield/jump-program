@@ -18,8 +18,10 @@ This repo is no longer the working copy. It's kept for history.
   that dashboard.
 - `index.html` was removed in the commit that added this README. Restore with
   `git checkout <that commit>^ -- index.html` if the hosted dashboard is still wanted.
-- `tracking.md` — empty per-cycle result tables, superseded by Apex. Its testing-method
-  section was migrated to `Testing Protocol.md` in the vault.
+- `tracking.md` — empty per-cycle result tables, superseded by Apex. Kept because it isn't
+  a straight duplicate: its testing-method section was rewritten into `Testing Protocol.md`
+  in the vault, but the result tables exist nowhere else.
 
-The `.md` programme files here are duplicates of the vault's copies as of the migration.
-They were left in place rather than deleted; the vault is the one to trust.
+All 20 migrated `.md` files were deleted from this repo once each vault copy was verified
+to contain the original byte-for-byte. Git history still has them. There is now exactly one
+copy of each, in the vault.
